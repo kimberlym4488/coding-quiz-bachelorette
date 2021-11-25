@@ -1,0 +1,36 @@
+:root{
+    --main-border:1rem solid #006837;
+}
+
+
+body {
+    text-decoration:none;        
+    font-family:arial;
+    font-size:1rem;
+    color:black;
+    margin:auto;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+#mainTitle{
+
+    display:block;
+    margin:auto;
+    width:50%;
+    font-size:3rem;
+    background-color:aliceblue;
+}
+
+#startButton, #nextQuestion {
+    display:block;
+    border:var(--main-border);
+    padding:1rem;
+    font-weight:bold;
+    background-color:aliceblue;
+    margin:auto;
+
+}
+
+
+

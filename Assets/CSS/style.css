@@ -1,5 +1,10 @@
 :root{
-    --main-border:1rem solid #006837;
+    --main-border:.5rem #028090;
+    --background-light:#F0F3BD;
+    --background-med:#02C39A;
+    --background-dark:#05668D;
+
+
 }
 
 
@@ -11,6 +16,7 @@ body {
     margin:auto;
     text-align:center;
     box-sizing:border-box;
+    background-color:var(--background-light);
 }
 
 #mainTitle{
@@ -19,7 +25,9 @@ body {
     margin:auto;
     width:50%;
     font-size:3rem;
-    background-color:aliceblue;
+    background-color:var(--background-dark);
+    color:white;
+    padding:1rem;
 }
 
 #startButton, #nextQuestion {

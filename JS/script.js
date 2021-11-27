@@ -2,7 +2,6 @@ var container = document.querySelector(".container");
 var startButton = document.querySelector("#startButton");
 var questions = document.querySelector(".questions");
 var question = document.querySelector(".question");
-var buttonChoices = document.querySelector(".buttonChoices");
 var choices = document.createElement("choices")
 var correctAnswer = document.querySelector(".correctAnswer");
 var nextQuestion = document.querySelector("#nextQuestion");
@@ -13,11 +12,12 @@ var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector("#resultsCard");
 var secondsLeft = 120;
 var index = 0;
+var currentQuestion = questions[index];
 
 
 
 //inserts timer element, starting at 120 seconds
-buttonChoices.style.backgroundColor ="blue";
+
 question.style.backgroundColor = "red";
 //choices.style.backgroundColor = "green";
 questionCard.style.backgroundColor="orange";
@@ -60,14 +60,18 @@ function callQuestion(){
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
   
     question.innerHTML=" ";
+    choices.innerHTML="";
     question.innerHTML=questions[index].question;
+    //button.innerHTML = currentQuestion.choices[i];
     //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
-    for(var i=0; i<4; i++) {
+    for(var i=0; i < questions[index].choices.length; i++) {
         //for each button it's text content should be the corresponding array item from question[];
-        buttonChoices.innerHTML = questions[index].choices[i];
-        questionCard.appendChild(choices);
-        buttonChoices.style.color = "red";
-        buttonChoices.onclick=callQuestion;
+        var button = document.createElement("button");
+        button.innerHTML=questions[index].choices[i];
+        questionCard.appendChild(button);
+        button.style.color = "white";
+        button.style.backgroundColor = "black";
+        button.onclick=callQuestion;
         console.log(question)
         console.log(choices);
        
@@ -84,18 +88,15 @@ function navigate(direction) {
     else {
         index++;
         console.log(index);
+
     }
-    
+  
 }
-
-
 /*nextQuestion.addEventListener("click", function (event) {
     event.stopPropagation();
     navigate(1);
 }
 )*/
-
-
 //Displays
 function results() {
     startCard.style.display = "none";
@@ -107,7 +108,6 @@ function results() {
 }
 //questions[0].choices[2]
 //array of questions. index
-
 questions = [
     {
         question: "What is the occupation of Michelle Young as of 2021?",

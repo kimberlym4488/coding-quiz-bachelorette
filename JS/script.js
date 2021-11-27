@@ -71,8 +71,11 @@ function callQuestion(){
         questionCard.appendChild(button);
         button.style.color = "white";
         button.style.backgroundColor = "black";
-        button.onclick=callQuestion;
-        console.log(question)
+        if (button.onclick){
+            callQuestion;
+            button.innerHTML="";
+        }
+        console.log(question);
         console.log(choices);
        
     }
@@ -88,7 +91,6 @@ function navigate(direction) {
     else {
         index++;
         console.log(index);
-
     }
   
 }

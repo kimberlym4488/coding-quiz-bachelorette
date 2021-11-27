@@ -18,6 +18,9 @@ body {
     box-sizing:border-box;
     background-color:var(--background-light);
 }
+.startCard{
+    background-color: var(--background-dark);
+}
 
 #mainTitle{
 
@@ -40,5 +43,9 @@ body {
 
 }
 
+.questionCard{
+    display:none;
+    background-color:var(--background-med);
+}
 
 

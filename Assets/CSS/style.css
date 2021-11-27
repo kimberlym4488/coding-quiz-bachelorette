@@ -48,4 +48,14 @@ body {
     background-color:var(--background-med);
 }
 
+h1.question{
+    margin:auto;
+    width:50%;
+    font-size:1.5rem;
+    background-color:var(--background-dark);
+    color:white;
+    padding:1rem;
+    margin:auto;
+    text-align:center;
+}
 

@@ -60,7 +60,6 @@ function callQuestion(){
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
   
     question.innerHTML=" ";
-    choices.innerHTML="";
     question.innerHTML=questions[index].question;
     //button.innerHTML = currentQuestion.choices[i];
     //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
@@ -68,25 +67,23 @@ function callQuestion(){
         //for each button it's text content should be the corresponding array item from question[];
         var button = document.createElement("button");
         button.innerHTML=questions[index].choices[i];
-        questionCard.appendChild(button);
+        question.appendChild(button);
         button.style.color = "white";
         button.style.backgroundColor = "black";
-        if (button.onclick){
-            callQuestion;
-            button.innerHTML="";
-        }
+        button.style.display = "block";
+        button.addEventListener("Click", callQuestion);
         console.log(question);
         console.log(choices);
-       
     }
 }
+
 
 function navigate(direction) {
     index = index + direction;
     
     if (index === questions.length - 1) {
         console.log(index);
-        //(results???)
+        results();
     }
     else {
         index++;
@@ -99,13 +96,13 @@ function navigate(direction) {
     navigate(1);
 }
 )*/
-//Displays
+//Displays if you got it right or wrong.
 function results() {
     startCard.style.display = "none";
     questionCard.style.display = "none";
     resultsCard.style.display = "block";
     var yourScore = document.createElement("yourScore");
-    yourScore.innerHTML = ($`You got it right! Please enter your initials here to save your scores.`);
+    yourScore.textContent = ($`You got this many right`);
     resultsCard.appendChild("yourScore");
 }
 //questions[0].choices[2]

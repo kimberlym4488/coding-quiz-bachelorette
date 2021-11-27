@@ -2,78 +2,48 @@ var container = document.querySelector(".container");
 var startButton = document.querySelector("#startButton");
 var questions = document.querySelector(".questions");
 var question = document.querySelector(".question");
+var buttonChoices = document.querySelector(".buttonChoices");
+var choices = document.createElement("choices")
 var correctAnswer = document.querySelector(".correctAnswer");
 var nextQuestion = document.querySelector("#nextQuestion");
-var results = document.querySelector("#results");
-var timeEl = document.createElement("timerElement");
+var timeEl = document.querySelector(".timerElement");
 var quizMainSection = document.querySelector("#quizMainSection");
-var secondsLeft = 120;
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
+var resultsCard = document.querySelector("#resultsCard");
+var secondsLeft = 120;
 var index = 0;
 
 
 
 //inserts timer element, starting at 120 seconds
-nextQuestion.setAttribute("style", "border:solid 5px black")
-timeEl.setAttribute("style", "border:solid 5px black;")
+buttonChoices.style.backgroundColor ="blue";
+question.style.backgroundColor = "red";
+//choices.style.backgroundColor = "green";
+questionCard.style.backgroundColor="orange";
+nextQuestion.style.backgroundColor = "purple";
+timeEl.style.backgroundColor = "yellow";
 
-function changeColor() {
-    startButton.style.backgroundColor = "red";
-    return false;
-}
+
 //event listener created for container - click to start game.
 //startGame function defined. Hide the start button and display 1st question
 function startGame() {
-
+    
     startCard.style.display = "none";
     questionCard.style.display = "block";
-    setTime();
+    resultsCard.style.display = "none";
     callQuestion();
+    setTime();
     navigate(0);
-    
-}
-function callQuestion(){
-    //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
-    questionCard.innerHTML="";
-    question.innerHTML=questions[index].question;
-    //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
-    for(var i=0; i<4; i++) {
-        var button = document.createElement("button");
-        //for each button it's text content should be the corresponding array item from question[];
-        button.textContent = questions[index].choices[i];
-        questionCard.appendChild(button);
-        button.onclick=callQuestion;
-    }
-}
 
-function navigate(direction) {
-    index = index + direction;
-    console.log(index);
-    if (index === questions.length - 1) {
-        console.log(index);
-        results();
-    }
-    else {
-        index++;
-    }
-    currentQuestion = questions[index];
-    console.log(currentQuestion);
+   
 }
-
-
-nextQuestion.addEventListener("click", function (event) {
-    event.stopPropagation();
-    navigate(1);
-}
-)
-
 //Start the timer when user clicks start. Want this to be a global functio.
 function setTime() {
     // Sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
-        timeEl.innerHTML = secondsLeft + " til the quiz ends.";
+        timeEl.innerHTML = secondsLeft + " seconds left til the quiz ends.";
 
 
         if (secondsLeft === 0) {
@@ -84,19 +54,60 @@ function setTime() {
         }
 
     }, 1000);
-    questionCard.appendChild(timeEl);
+  
 }
+function callQuestion(){
+    //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
+  
+    question.innerHTML=" ";
+    question.innerHTML=questions[index].question;
+    //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
+    for(var i=0; i<4; i++) {
+        //for each button it's text content should be the corresponding array item from question[];
+        buttonChoices.innerHTML = questions[index].choices[i];
+        questionCard.appendChild(choices);
+        buttonChoices.style.color = "red";
+        buttonChoices.onclick=callQuestion;
+        console.log(question)
+        console.log(choices);
+       
+    }
+}
+
+function navigate(direction) {
+    index = index + direction;
+    
+    if (index === questions.length - 1) {
+        console.log(index);
+        //(results???)
+    }
+    else {
+        index++;
+        console.log(index);
+    }
+    
+}
+
+
+/*nextQuestion.addEventListener("click", function (event) {
+    event.stopPropagation();
+    navigate(1);
+}
+)*/
+
 
 //Displays
 function results() {
-
+    startCard.style.display = "none";
+    questionCard.style.display = "none";
+    resultsCard.style.display = "block";
     var yourScore = document.createElement("yourScore");
-    yourScore.innerHTML = ($`You got ${rightAnswers} right! Please enter your initials here to save your scores.`);
-    container.appendChild("yourScore");
-
+    yourScore.innerHTML = ($`You got it right! Please enter your initials here to save your scores.`);
+    resultsCard.appendChild("yourScore");
 }
 //questions[0].choices[2]
-//array of questions. inde
+//array of questions. index
+
 questions = [
     {
         question: "What is the occupation of Michelle Young as of 2021?",

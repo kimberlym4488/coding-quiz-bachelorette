@@ -36,7 +36,6 @@ function startGame() {
     setTime();
     navigate(0);
 
-   
 }
 //Start the timer when user clicks start. Want this to be a global functio.
 function setTime() {
@@ -58,7 +57,7 @@ function setTime() {
 }
 function callQuestion(){
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
-    question.innerHTML=" ";
+    question.innerHTML="";
     question.innerHTML=questions[index].question;
     //button.innerHTML = currentQuestion.choices[i];
     //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
@@ -70,13 +69,11 @@ function callQuestion(){
         button.style.color = "white";
         button.style.backgroundColor = "black";
         button.style.display = "block";
-        button.addEventListener("click", callQuestion)
-
-        console.log(question);
-        console.log(choices);
+        button.onclick=console.log("Hello");
+        //this works but it won't call the correct answer when I do
+        //button.onclick=currentquestion.correctAnswer
     }
 }
-
 
 function navigate(direction) {
     index = index + direction;
@@ -91,11 +88,14 @@ function navigate(direction) {
     }
   
 }
-/*nextQuestion.addEventListener("click", function (event) {
-    event.stopPropagation();
-    navigate(1);
+
+
+nextQuestion.addEventListener("click", function () {
+
+   callQuestion();
 }
-)*/
+)
+
 //Displays if you got it right or wrong.
 function results() {
     startCard.style.display = "none";
@@ -136,7 +136,7 @@ questions = [
     },
 ]
 
-startButton.addEventListener("click", function () {
+startButton.addEventListener("click", function() {
     startGame();
 }
 )

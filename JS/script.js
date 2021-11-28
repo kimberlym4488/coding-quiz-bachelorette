@@ -69,11 +69,14 @@ function callQuestion(){
         button.style.color = "white";
         button.style.backgroundColor = "black";
         button.style.display = "block";
-        button.onclick=console.log("Hello");
+        button.addEventListener("click", function(){
+            console.log(button.textContent);
+        })
         //this works but it won't call the correct answer when I do
         //button.onclick=currentquestion.correctAnswer
     }
 }
+
 
 function navigate(direction) {
     index = index + direction;
@@ -86,12 +89,10 @@ function navigate(direction) {
         index++;
         console.log(index);
     }
-  
 }
 
 
 nextQuestion.addEventListener("click", function () {
-
    callQuestion();
 }
 )

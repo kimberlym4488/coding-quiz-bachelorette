@@ -1,25 +1,25 @@
 var container = document.querySelector(".container");
 var startButton = document.querySelector("#startButton");
-var questions = document.querySelector(".questions");
-var question = document.querySelector(".question");
+var questionsEl = document.querySelector(".questions");
+var questionEl = document.querySelector(".question");
 var buttonChoices = document.querySelector(".buttonChoices"); 
-var choices = document.querySelectorAll(".choices");
-var correctAnswer = document.querySelector(".correctAnswer");
+var choicesEl = document.querySelectorAll(".choices");
+var correctAnswerEl = document.querySelector(".correctAnswer");
 var nextQuestion = document.querySelector("#nextQuestion");
 var timeEl = document.querySelector(".timerElement");
-var quizMainSection = document.querySelector("#quizMainSection");
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
-var resultsCard = document.querySelector("#resultsCard");
+var resultsCard = document.querySelector(".resultsCard");
 var secondsLeft = 120;
 var index = 0;
-var output = [];
-
-
-
+var yourScoreEl = document.querySelector("yourScore");
+var questions = [];
+yourScoreEl = "";
+var count = 0;
+var totalScore;
 
 //questions[0].choices[2]
-//array of questions. index
+//array of questions. index we call on for current and next question
 questions = [
     {
         question: "What is the occupation of Michelle Young as of 2021?",
@@ -62,11 +62,9 @@ questions = [
     },
 ]
 
-var currentQuestion = questions[index];
-var yourAnswer = document.createElement("yourAnswer");
+startCard.style.display="block";
 
-
-question.style.backgroundColor = "red";
+questionEl.style.backgroundColor = "red";
 //choices.style.backgroundColor = "green";
 questionCard.style.backgroundColor="orange";
 nextQuestion.style.backgroundColor = "purple";
@@ -104,70 +102,86 @@ function setTime() {
     }, 1000);
   
 }
+
+
 function callQuestion(){
+    
+    /*console.log(index);
+    console.log(questions[index]);
+    console.log(questions.length)*/
+    if(index>=questions.length){
+        console.log("Hello Wolrd");
+        results();
+    }
+    else{
+
+        questionEl.innerHTML="";
+        choicesEl.innerHTML="";
+        count=0;
+        
+    //questions is the array, question is an object in the questions array, choices are array within questions array
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
-    question.innerHTML="";
-    choices.innerHTML="";
-    question.innerHTML=questions[index].question;
+  
+  
+    questionEl.innerHTML=questions[index].question;
 
-    //button.innerHTML = currentQuestion.choices[i];
     //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
-        //for each button it's text content should be the corresponding array item from question[];
+        //for each question it's text content should be the corresponding array item from choices.
 
-       choices.forEach(function(element,index){
-            element.textContent=currentQuestion.choices[index];
-            element.addEventListener("click", function(){
-                if (currentQuestion.correctAnswer == index){
-                    console.log("Correct Answer");
-                    console.log(element,index);
-
-                }   else{
-                    console.log("Wrong Answer");
+    choicesEl.forEach(function(element,i){
+        element.textContent=questions[index].choices[i];
+        element.addEventListener("click", function(e){
+                e.stopPropogation;
+                if (questions[index].correctAnswer == i){
+                    count+=1;
+                    localStorage.setItem(count,JSON.stringify(count));
+                   // console.log(choicesEl[i]);
+                } 
+                else{
+                   console.log("Wrong Answer");
                 }
-                }
-            )
+            }
+            );
         }
         );
-        //choices.innerHTML=questions[index].choices[index];
-            console.log(currentQuestion.choices);
-            console.log(choices.textContent);
-            console.log(currentQuestion);
-            console.log(currentQuestion.choices);
-            console.log(currentQuestion.correctAnswer)
-           
-        
-        
-        //this works but it won't call the correct answer when I do
     }
+        //choices.innerHTML=questions[index].choices[index];
+}
+
+        //the next question is appearing but not when I console log the currentQuestion after choices
+
 
 function navigate(direction) {
     index = index + direction;
+  
     console.log(index);
-    if (index <= questions.length - 1) {
-        index++;
-       
-    }
-    else {
-        return;
-    }
+    console.log(questions[index]);
+
 }
 
-
+//navigates +1 in the index and returns to the call question function.)
 nextQuestion.addEventListener("click", function () {
-   callQuestion();
-   navigate(1);
+    navigate(1);
+    callQuestion();
 }
 )
 
-//Displays if you got it right or wrong.
+//Displays how many you got right. Will allow you to enter initials with score and save to local storage.
 function results() {
+    resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
-    resultsCard.style.display = "block";
-    var yourScore = document.createElement("yourScore");
-    yourScore.textContent = ($`You got this many right`);
-    resultsCard.appendChild("yourScore");
+    //var seeResultsButton = document.querySelector("#seeResults");**/
+  
+    totalScore = localStorage.getItem(count,JSON.parse(count));
+    console.log(totalScore);
+    resultsCard.textContent=`This is where your highscore of ${totalScore} lives`;
+    console.log(`This is where the ${totalScore} lives`);
+    
 }
+
+
+//calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {
     startGame();
 }

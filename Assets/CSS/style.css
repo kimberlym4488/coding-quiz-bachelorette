@@ -19,6 +19,7 @@ body {
     background-color:var(--background-light);
 }
 .startCard{
+    display:none;
     background-color: var(--background-dark);
 }
 
@@ -48,6 +49,11 @@ body {
     background-color:var(--background-med);
 }
 
+.resultsCard{
+    display:none;
+    background-color:var(--background-light)
+}
+
 h1.question{
     margin:auto;
     width:50%;
@@ -72,3 +78,4 @@ h1.question{
     text-align:center;
 
 }
+

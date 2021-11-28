@@ -58,7 +58,6 @@ function setTime() {
 }
 function callQuestion(){
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
-  
     question.innerHTML=" ";
     question.innerHTML=questions[index].question;
     //button.innerHTML = currentQuestion.choices[i];
@@ -71,15 +70,10 @@ function callQuestion(){
         button.style.color = "white";
         button.style.backgroundColor = "black";
         button.style.display = "block";
-        
-        button.addEventListener("click", isRight){
-            if (button.value)
-            //if button[i] === choices [] then add count++ var for results display. Add var count add function is right, call it in results.
-            
-            callQuestion();
+        button.addEventListener("click", callQuestion)
+
         console.log(question);
         console.log(choices);
-        }
     }
 }
 

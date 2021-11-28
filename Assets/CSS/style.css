@@ -59,3 +59,13 @@ h1.question{
     text-align:center;
 }
 
+h1.question .button{
+    margin:auto;
+    width:50%;
+    font-size:1.5rem;
+    background-color:var(--background-dark);
+    color:white;
+    padding:1rem;
+    margin:auto;
+    text-align:center;
+}

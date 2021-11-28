@@ -71,9 +71,15 @@ function callQuestion(){
         button.style.color = "white";
         button.style.backgroundColor = "black";
         button.style.display = "block";
-        button.addEventListener("Click", callQuestion);
+        
+        button.addEventListener("click", isRight){
+            if (button.value)
+            //if button[i] === choices [] then add count++ var for results display. Add var count add function is right, call it in results.
+            
+            callQuestion();
         console.log(question);
         console.log(choices);
+        }
     }
 }
 

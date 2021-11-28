@@ -2,7 +2,8 @@ var container = document.querySelector(".container");
 var startButton = document.querySelector("#startButton");
 var questions = document.querySelector(".questions");
 var question = document.querySelector(".question");
-var choices = document.createElement("choices")
+var buttonChoices = document.querySelector(".buttonChoices"); 
+var choices = document.querySelectorAll(".choices");
 var correctAnswer = document.querySelector(".correctAnswer");
 var nextQuestion = document.querySelector("#nextQuestion");
 var timeEl = document.querySelector(".timerElement");
@@ -12,11 +13,58 @@ var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector("#resultsCard");
 var secondsLeft = 120;
 var index = 0;
+var output = [];
+
+
+
+
+//questions[0].choices[2]
+//array of questions. index
+questions = [
+    {
+        question: "What is the occupation of Michelle Young as of 2021?",
+        choices: [
+            "Social Media Influencer",
+            "Educator",
+            "Basketball Coach",
+            "Dental Hygienist"],
+        correctAnswer: 1
+    },
+
+    {
+        question: "Who received the first Impression Rose on night 1?",
+        choices: [
+        "Rick",
+         "Joe",
+         "Nayte",
+         "Brandon"],
+        correctAnswer: 2
+    },
+
+    {
+        question: "Who or what did contestant Ryan F bring to his hotel room that got him kicked off on night 1?",
+        choices: [
+        "Study notes",
+        "Pictures of ex-girlfriend",
+        "A producer on the show",
+        "Illegal substance"],
+        correctAnswer: 0
+    },
+
+    {
+        question: "Who ghosted Michelle before the season started?",
+        choices: [
+        "Joe",
+        "Tayshia",
+        "Her dad",
+        "Rick"],
+        correctAnswer: 0
+    },
+]
+
 var currentQuestion = questions[index];
+var yourAnswer = document.createElement("yourAnswer");
 
-
-
-//inserts timer element, starting at 120 seconds
 
 question.style.backgroundColor = "red";
 //choices.style.backgroundColor = "green";
@@ -37,13 +85,14 @@ function startGame() {
     navigate(0);
 
 }
+
 //Start the timer when user clicks start. Want this to be a global functio.
 function setTime() {
     // Sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
+        //inserts timer element, starting at 120 seconds
         timeEl.innerHTML = secondsLeft + " seconds left til the quiz ends.";
-
 
         if (secondsLeft === 0) {
             // Stops execution of action at set interval
@@ -58,42 +107,55 @@ function setTime() {
 function callQuestion(){
     //create if statement to break out of the recursion. If index < questions.length ....else (index>questions.length return results();
     question.innerHTML="";
+    choices.innerHTML="";
     question.innerHTML=questions[index].question;
+
     //button.innerHTML = currentQuestion.choices[i];
     //create buttons to go with corresponding choices. If the user selects the index choice that matches correctAnswer display Correct. If the user selects the index choice that doesn't match correctAnswer display incorrect. Then they click nextQuestion.
-    for(var i=0; i < questions[index].choices.length; i++) {
         //for each button it's text content should be the corresponding array item from question[];
-        var button = document.createElement("button");
-        button.innerHTML=questions[index].choices[i];
-        question.appendChild(button);
-        button.style.color = "white";
-        button.style.backgroundColor = "black";
-        button.style.display = "block";
-        button.addEventListener("click", function(){
-            console.log(button.textContent);
-        })
-        //this works but it won't call the correct answer when I do
-        //button.onclick=currentquestion.correctAnswer
-    }
-}
 
+       choices.forEach(function(element,index){
+            element.textContent=currentQuestion.choices[index];
+            element.addEventListener("click", function(){
+                if (currentQuestion.correctAnswer == index){
+                    console.log("Correct Answer");
+                    console.log(element,index);
+
+                }   else{
+                    console.log("Wrong Answer");
+                }
+                }
+            )
+        }
+        );
+        //choices.innerHTML=questions[index].choices[index];
+            console.log(currentQuestion.choices);
+            console.log(choices.textContent);
+            console.log(currentQuestion);
+            console.log(currentQuestion.choices);
+            console.log(currentQuestion.correctAnswer)
+           
+        
+        
+        //this works but it won't call the correct answer when I do
+    }
 
 function navigate(direction) {
     index = index + direction;
-    
-    if (index === questions.length - 1) {
-        console.log(index);
-        results();
+    console.log(index);
+    if (index <= questions.length - 1) {
+        index++;
+       
     }
     else {
-        index++;
-        console.log(index);
+        return;
     }
 }
 
 
 nextQuestion.addEventListener("click", function () {
    callQuestion();
+   navigate(1);
 }
 )
 
@@ -106,37 +168,6 @@ function results() {
     yourScore.textContent = ($`You got this many right`);
     resultsCard.appendChild("yourScore");
 }
-//questions[0].choices[2]
-//array of questions. index
-questions = [
-    {
-        question: "What is the occupation of Michelle Young as of 2021?",
-        choices: ["Social Media Influencer",
-            "Educator",
-            "Basketball Coach",
-            "Dental Hygienist"],
-        correctAnswer: "Educator"
-    },
-
-    {
-        question: "Who received the first Impression Rose on night 1?",
-        choices: ["Rick",
-         "Joe",
-         "Nayte",
-         "Brandon"],
-        correctAnswer: "Nayte"
-    },
-
-    {
-        question: "Who or what did contestant Ryan F bring to his hotel room that got him kicked off on night 1?",
-        choices: ["Study notes",
-        "Pictures of ex-girlfriend",
-        "A producer on the show",
-        "Illegal substance"],
-        correctAnswer: "Study notes"
-    },
-]
-
 startButton.addEventListener("click", function() {
     startGame();
 }

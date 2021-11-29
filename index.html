@@ -30,10 +30,10 @@
                 <h1 class="question"></h1>
               
                 <ul>
-                    <li class="choices"></li>
-                    <li class="choices"></li>
-                    <li class="choices"></li>
-                    <li class="choices"></li>
+                    <li class="choices" onclick = "checkAnswer(0)"></li>
+                    <li class="choices" onclick = "checkAnswer(1)"></li>
+                    <li class="choices" onclick = "checkAnswer(2)"></li>
+                    <li class="choices" onclick = "checkAnswer(3)"></li>
                 </ul>
             
                 <!-- Submit your answer -->
@@ -47,6 +47,10 @@
 
         <div class = "resultsCard">
         <br>
+            <div class="highScore">Current High Score</div>
+            <div class="totalScore">Your current score</div>
+
+            <button class = "tryAgain">Try Again?</button>
             
             </div>
 

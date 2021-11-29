@@ -11,11 +11,12 @@ var timeEl = document.querySelector(".timerElement");
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
-var secondsLeft = 120;
+var highScoreEl = document.querySelector(".highScore");
+var totalScoreEl = document.querySelector(".totalScore");
+var tryAgain = document.querySelector(".tryAgain");
+var secondsLeft = 60;
 var index = 0;
-var yourScoreEl = document.querySelector("yourScore");
 var questions = [];
-yourScoreEl = "";
 var count = 0;
 var totalScore = 0;
 var highScore = 0;
@@ -110,11 +111,8 @@ function setTime() {
 //This function is called from startGame() or nextQuestion eventListener.
 function callQuestion(){
     
-    /*console.log(index);
-    console.log(questions[index]);
-    console.log(questions.length)*/
     //if my current index point is greater than the length of my question array then I start the results();
-    if(index>=questions.length){
+    if(index >= questions.length){
         console.log("Hello Wolrd");
         results();
     }
@@ -124,49 +122,69 @@ function callQuestion(){
         questionEl.innerHTML="";
         choicesEl.innerHTML="";
         //reset my count at 1 so it isn't being added twice.
-        count=0;
+        //count=0;
         
-    questionEl.innerHTML=questions[index].question;
+        questionEl.innerHTML=questions[index].question;
 
-//forEach loop allows me to display the two items (element, and index (i) that I want to work with and be able to evaluate)
         choicesEl.forEach(function(element,i){
             element.textContent=questions[index].choices[i];
+//forEach loop allows me to display the two items (element, and index (i) that I want to work with and be able to evaluate)
+        }
+        );
+    }
+
+}
+function checkAnswer(i){
+    console.log(i);
+    console.log(questions[index].correctAnswer)
+    if (questions[index].correctAnswer === i){
+        //increase my count by 1 for the locally stored variable count.
+        count++;
+        localStorage.setItem("count",count);
+        console.log(count);//check for errors
+
+    }
+    else{
+        //change nothing in my count var.
+        console.log("Wrong Answer");
+
+    }
+}
+    
             //Allows me to click an answer from the list of choices[i] and it will be an index number. If that 'i' that I click matches the correctAnswer'i' then I'll get 1 added to my count toward my totalScore. 
+        /*    choicesEl.forEach(function(element,i){
             element.addEventListener("click", function(e){
+                    
                     //stop event from bubbling up and calling correct answer/wrong answer repetitively
                     e.stopPropagation();
                     e.preventDefault();
-           
+                    console.log()
+                    
 
-                        if (questions[index].correctAnswer == i){
+                        if (questions[index].correctAnswer === i){
                         //increase my count by 1 for the locally stored variable count.
                         count++;
-                            localStorage.setItem("count",count);
-                       console.log(count);//adding two to count if I have a wrong answer previously. 
+                        localStorage.setItem("count",count);
+                        console.log(count);//adding two or more to count if I have a wrong answer on a previous question.
                          } 
                         else{
                         //change nothing in my count var.
                         console.log("Wrong Answer");
-                        return;
+                       
                         }
                     },
-                    {once : true}
+                   
                 
-            );
-        }
-        );
-    }
-}
-
+                );
+                }); 
+   */
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
 function navigate(direction) {
     index = index + direction;
   
     console.log(index);
     console.log(questions[index]);
-
 }
-
 //Navigates +1 in the index and returns to the call question function.
 nextQuestion.addEventListener("click", function () {
     navigate(1);
@@ -179,13 +197,15 @@ function results() {
     resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
+  
 
   //Gets the total score from the incremented count value found in CallQuestion function
-    localStorage.setItem("highScore", highScore);  
-    count = (localStorage.getItem("count"));
+    localStorage.setItem("highScoreEl", highScore);  
+    totalScoreEl =localStorage.getItem("count", count);
     console.log(count);
-    totalScore = count;
-    console.log(parseInt(totalScore));
+    console.log(totalScore);
+    console.log(parseInt(totalScoreEl));
+    totalScoreEl.textContent = localStorage.getItem("count",count);
   
     //Displays the total score - NEED TO FIX.
     resultsCard.textContent=`This is where your score of ${totalScore} lives`;

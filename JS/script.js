@@ -17,7 +17,8 @@ var yourScoreEl = document.querySelector("yourScore");
 var questions = [];
 yourScoreEl = "";
 var count = 0;
-var totalScore;
+var totalScore = 0;
+var highScore = 0;
 
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
@@ -133,18 +134,24 @@ function callQuestion(){
             //Allows me to click an answer from the list of choices[i] and it will be an index number. If that 'i' that I click matches the correctAnswer'i' then I'll get 1 added to my count toward my totalScore. 
             element.addEventListener("click", function(e){
                     //stop event from bubbling up and calling correct answer/wrong answer repetitively
-                    e.stopPropogation;
+                    e.stopPropagation();
+                    e.preventDefault();
+           
+
                         if (questions[index].correctAnswer == i){
-                            count+=1;
                         //increase my count by 1 for the locally stored variable count.
-                            localStorage.setItem(count,JSON.stringify(count));
-                        // console.log(choicesEl[i]);
+                        count++;
+                            localStorage.setItem("count",count);
+                       console.log(count);//adding two to count if I have a wrong answer previously. 
                          } 
                         else{
                         //change nothing in my count var.
                         console.log("Wrong Answer");
+                        return;
                         }
-            }
+                    },
+                    {once : true}
+                
             );
         }
         );
@@ -174,14 +181,23 @@ function results() {
     questionCard.style.display = "none";
 
   //Gets the total score from the incremented count value found in CallQuestion function
-    totalScore = localStorage.getItem(count,JSON.parse(count).value);
-    console.log(totalScore);
+    localStorage.setItem("highScore", highScore);  
+    count = (localStorage.getItem("count"));
+    console.log(count);
+    totalScore = count;
+    console.log(parseInt(totalScore));
+  
     //Displays the total score - NEED TO FIX.
-    resultsCard.textContent=`This is where your highscore of ${totalScore} lives`;
+    resultsCard.textContent=`This is where your score of ${totalScore} lives`;
     //testing to make sure something works on resultsCard
-    console.log(`This is where the ${totalScore} lives`);
-}
 
+
+    highScore = parseInt(localStorage.getItem("highScore"));
+   
+    if(totalScore > highScore) {
+        localStorage.setItem("highScore",totalScore);
+    }  
+}
 //calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {
     startGame();

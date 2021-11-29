@@ -11,15 +11,18 @@ var timeEl = document.querySelector(".timerElement");
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
-var highScoreEl = document.querySelector(".highScore");
-var totalScoreEl = document.querySelector(".totalScore");
+var highScore = document.querySelector(".highScore");
+var totalScore = document.querySelector(".totalScore");
 var tryAgain = document.querySelector(".tryAgain");
+var textBox = document.querySelector("#textBox");
+var yourInitialsInput = document.getElementById("#initials");
+var submit = document.querySelector(".submit");
 var secondsLeft = 60;
 var index = 0;
 var questions = [];
 var count = 0;
-var totalScore = 0;
-var highScore = 0;
+totalScore = 0;
+highScore = 0;
 
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
@@ -200,24 +203,29 @@ function results() {
   
 
   //Gets the total score from the incremented count value found in CallQuestion function
-    localStorage.setItem("highScoreEl", highScore);  
-    totalScoreEl =localStorage.getItem("count", count);
-    console.log(count);
-    console.log(totalScore);
-    console.log(parseInt(totalScoreEl));
-    totalScoreEl.textContent = localStorage.getItem("count",count);
   
-    //Displays the total score - NEED TO FIX.
-    resultsCard.textContent=`This is where your score of ${totalScore} lives`;
-    //testing to make sure something works on resultsCard
+  //Displays the total score - NEED TO FIX.
+  resultsCard.innerHTML=`This is where your score of ${totalScore} lives`;
+  textBox.innerHTML = `Enter your initials Here!`;
+  resultsCard.appendChild("textBox");
+  //yourInitialsInput.addEventListener("input",function(){});
+  //submit.addEventListener("click", function(){});
+      
 
+} 
+localStorage.setItem("highScore", highScore);  
+totalScore =localStorage.getItem("count", count);
 
-    highScore = parseInt(localStorage.getItem("highScore"));
-   
-    if(totalScore > highScore) {
-        localStorage.setItem("highScore",totalScore);
-    }  
+totalScore =parseInt(totalScore);
+
+resultsCard.textContent = {
+        initials: yourInitialsInput,
 }
+localStorage.setItem(JSON.stringify("yourInitialsInput", textBox));
+textBox.value = localStorage.getItem(JSON.parse("initials"));
+
+//}
+
 //calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {
     startGame();

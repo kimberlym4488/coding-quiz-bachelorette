@@ -173,7 +173,11 @@ function results() {
   //Gets the total score from the incremented count value found in CallQuestion function
   //Displays the total score - NEED TO FIX.
   textBox.innerHTML = `Enter your initials Here!`;
-}
+ 
+};
+tryAgain.addEventListener("click",function() {
+    startGame();
+});
 
 var myScore = localStorage.getItem("count", count);
 myScore = parseInt(myScore);
@@ -182,7 +186,7 @@ submit.addEventListener("click", function(event) {
     event.preventDefault();
     
     var allTimeScoresandInitials = {
-        initials:yourInitialsInput,
+        initials:yourInitialsInput.value,
         myScore:myScore,
     }
 
@@ -191,38 +195,19 @@ submit.addEventListener("click", function(event) {
     console.log(allTimeScoresandInitials);
     console.log(JSON.stringify(allTimeScoresandInitials));
     console.log("You clicked on Submit"); 
-    scores.innerHTML = JSON.parse(localStorage.getItem("yourInitialsInput", "allTimeScores"));
+    scores.innerHTML = JSON.parse(localStorage.getItem("yourInitialsInput.value", "myScore"));
     console.log(scores);
 });
 
 function returnItems() {
-    
     console.log(JSON.parse(localStorage.getItem("allTimeScoresandInitialsLocal")));
+    
 }
-
-tryAgain.addEventListener("click",function(event) {
-    event.preventDefault();
-    startGame();
-
-});
-
-//textBox.value = localStorage.setItem( JSON.par("initials"));
-//}
-
-//allTimeScores = localStorage.getItem("alltime_highscores");
+//takes you back to the start when you click Try Again! SHOULD retain your high score.
 
 
-//allTimeScores=[
-   // {initials:"dw", score: 50},
-    //{initials:"kim", score: 60},
-//]
-/*
-1. make an Array.empty(from previous quiz attempts)
-var myScores = [];
-2. when you're ready to save a new socre object... make that object that looks like 194-197.
-3. Push into our Array, set into localStorage.clear4. revise the way you defined the Array. It shouldn't be empty on page load unless nobody's taken the quiz/local storage is empty. If it's empty 
-//calls the start game function when Start is clicked.*/
+//calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {
     startGame();
 }
-)
+);

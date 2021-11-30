@@ -178,13 +178,12 @@ function results() {
 var myScore = localStorage.getItem("count", count);
 myScore = parseInt(myScore);
 
-
 submit.addEventListener("click", function(event) {
     event.preventDefault();
     
     var allTimeScoresandInitials = {
-        initials:yourInitialsInput.value,
-        myScore:myScore.value,
+        initials:yourInitialsInput,
+        myScore:myScore,
     }
 
     localStorage.setItem("allTimeScoresandInitialsLocal", JSON.stringify(allTimeScoresandInitials));
@@ -200,6 +199,12 @@ function returnItems() {
     
     console.log(JSON.parse(localStorage.getItem("allTimeScoresandInitialsLocal")));
 }
+
+tryAgain.addEventListener("click",function(event) {
+    event.preventDefault();
+    startGame();
+
+});
 
 //textBox.value = localStorage.setItem( JSON.par("initials"));
 //}

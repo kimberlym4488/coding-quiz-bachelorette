@@ -178,12 +178,12 @@ function results() {
   //Gets the total score from the incremented count value found in CallQuestion function
   
   //Displays the total score - NEED TO FIX.
-  resultsCard.innerHTML=
+ 
   textBox.innerHTML = `Enter your initials Here!`;
   resultsCard.appendChild("textBox");
 
   
-} 
+ 
 localStorage.setItem("highScore", highScore);  
 totalScore =localStorage.getItem("count", count);
 totalScore =parseInt(totalScore);

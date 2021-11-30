@@ -154,33 +154,6 @@ function checkAnswer(i){
     }
 }
     
-            //Allows me to click an answer from the list of choices[i] and it will be an index number. If that 'i' that I click matches the correctAnswer'i' then I'll get 1 added to my count toward my totalScore. 
-        /*    choicesEl.forEach(function(element,i){
-            element.addEventListener("click", function(e){
-                    
-                    //stop event from bubbling up and calling correct answer/wrong answer repetitively
-                    e.stopPropagation();
-                    e.preventDefault();
-                    console.log()
-                    
-
-                        if (questions[index].correctAnswer === i){
-                        //increase my count by 1 for the locally stored variable count.
-                        count++;
-                        localStorage.setItem("count",count);
-                        console.log(count);//adding two or more to count if I have a wrong answer on a previous question.
-                         } 
-                        else{
-                        //change nothing in my count var.
-                        console.log("Wrong Answer");
-                       
-                        }
-                    },
-                   
-                
-                );
-                }); 
-   */
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
 function navigate(direction) {
     index = index + direction;
@@ -205,24 +178,24 @@ function results() {
   //Gets the total score from the incremented count value found in CallQuestion function
   
   //Displays the total score - NEED TO FIX.
-  resultsCard.innerHTML=`This is where your score of ${totalScore} lives`;
+  resultsCard.innerHTML=
   textBox.innerHTML = `Enter your initials Here!`;
   resultsCard.appendChild("textBox");
-  //yourInitialsInput.addEventListener("input",function(){});
-  //submit.addEventListener("click", function(){});
-      
 
+  
 } 
 localStorage.setItem("highScore", highScore);  
 totalScore =localStorage.getItem("count", count);
-
 totalScore =parseInt(totalScore);
 
-resultsCard.textContent = {
-        initials: yourInitialsInput,
+textBox.addEventListener("input",function(){});
+
+localStorage.setItem(JSON.stringify("input", initials));
+submit.addEventListener("click", function(){
+    textBox.value = localStorage.getItem(JSON.parse("initials"));
+});
 }
-localStorage.setItem(JSON.stringify("yourInitialsInput", textBox));
-textBox.value = localStorage.getItem(JSON.parse("initials"));
+
 
 //}
 

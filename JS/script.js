@@ -12,10 +12,10 @@ var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
 var tryAgain = document.querySelector(".tryAgain");
-var textBox = document.querySelector("#textBox");
-var yourInitialsInput = document.getElementById("#yourInitialsInput");
+var form = document.querySelector("#form");
 var submit = document.querySelector(".submit");
 var scores = document.querySelector("#scores");
+var score = document.querySelector(".score");
 var secondsLeft = 60;
 var index = 0;
 var questions = [];
@@ -23,6 +23,9 @@ var count = 0;
 
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
+score.innerHTML = myScore;
+console.log(myScore);
+
 questions = [
     {
         question: "What is the occupation of Michelle Young as of 2021?",
@@ -170,41 +173,18 @@ function results() {
     resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
+   
   //Gets the total score from the incremented count value found in CallQuestion function
   //Displays the total score - NEED TO FIX.
-  textBox.innerHTML = `Enter your initials Here!`;
- 
-};
-tryAgain.addEventListener("click",function() {
-    startGame();
-});
+}
+
 
 var myScore = localStorage.getItem("count", count);
 myScore = parseInt(myScore);
+console.log(myScore);
+score.innerHTML=myScore;
 
-submit.addEventListener("click", function(event) {
-    event.preventDefault();
-    
-    var allTimeScoresandInitials = {
-        initials:yourInitialsInput.value,
-        myScore:myScore,
-    }
-
-    localStorage.setItem("allTimeScoresandInitialsLocal", JSON.stringify(allTimeScoresandInitials));
-    returnItems();
-    console.log(allTimeScoresandInitials);
-    console.log(JSON.stringify(allTimeScoresandInitials));
-    console.log("You clicked on Submit"); 
-    scores.innerHTML = JSON.parse(localStorage.getItem("yourInitialsInput.value", "myScore"));
-    console.log(scores);
-});
-
-function returnItems() {
-    console.log(JSON.parse(localStorage.getItem("allTimeScoresandInitialsLocal")));
-    
-}
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
-
 
 //calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {

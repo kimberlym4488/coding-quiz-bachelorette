@@ -11,8 +11,14 @@
 <body>
     <main class = "container">
         
-        <header id = "mainTitle">-Bachelorette Trivia-<br>Are you here for the right reasons?</header><br>
-        <p id="scores"></p>
+        <header>
+
+      <nav id = "mainTitle">-Bachelorette Trivia-<br>Are you here for the right reasons?</nav>
+      <p class = "score"></p>
+      <br>
+    </header>
+       
+
 
         <div class = "startCard">
         
@@ -53,16 +59,18 @@
         <div class = "resultsCard">
         <br>
 
-            <p id="textBox"></p>
+        <form id="form">
 
-            <label for="initials">Your Initials</label>
-            <input type="text" name="initials" id="yourInitialsInput"/>
+            <label>Enter your Initials here to save your high score!</label>
+                <input id="yourInitialsInput"> 
+                <p class ="myScore"><p1>
+                <br>
+            <label>Your high score:</label>
+                <br>
+            <button class="submit"></button>
+        </form>
 
-            <button class = "submit">Submit your initials to save your high score!</button> 
-
-       
-
-            <button class = "tryAgain">Try Again?</button>
+            <button class = "tryAgain" onclick="startGame()">Try Again?</button>
             </div>
 
 

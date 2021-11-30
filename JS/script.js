@@ -70,12 +70,6 @@ questions = [
 //default value of startcard is display:none. This shows the card at the beginning and I can remove it after startGame function is called.
 startCard.style.display="block";
 
-questionEl.style.backgroundColor = "red";
-//choices.style.backgroundColor = "green";
-questionCard.style.backgroundColor="orange";
-nextQuestion.style.backgroundColor = "purple";
-timeEl.style.backgroundColor = "yellow";
-
 //startGame function defined. Hide the start button, display 'first' question, start timer.
 function startGame() {
     
@@ -182,7 +176,7 @@ function results() {
 var myScore = localStorage.getItem("count", count);
 myScore = parseInt(myScore);
 console.log(myScore);
-score.innerHTML=myScore;
+score.innerHTML=(`Your high score is currently: ${myScore}`);
 
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 

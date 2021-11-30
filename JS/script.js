@@ -180,22 +180,23 @@ function results() {
   //Displays the total score - NEED TO FIX.
  
   textBox.innerHTML = `Enter your initials Here!`;
-  resultsCard.appendChild("textBox");
-
-  
  
 localStorage.setItem("highScore", highScore);  
 totalScore =localStorage.getItem("count", count);
 totalScore =parseInt(totalScore);
 
-textBox.addEventListener("input",function(){});
+highScore.textContent = `Your total score is ${totalScore}. The high score is ${highScore}`;
 
-localStorage.setItem(JSON.stringify("input", initials));
+textBox.addEventListener("input",function(){
+    localStorage.setItem(JSON.stringify("input", initials));
+});
+
 submit.addEventListener("click", function(){
-    textBox.value = localStorage.getItem(JSON.parse("initials"));
+    textBox.value = localStorage.setItem(JSON.parse("initials"));
+    highScore.textContent = localStorage.setItem(JSON.parse())
+
 });
 }
-
 
 //}
 

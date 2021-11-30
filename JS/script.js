@@ -11,18 +11,15 @@ var timeEl = document.querySelector(".timerElement");
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
-var highScore = document.querySelector(".highScore");
-var totalScore = document.querySelector(".totalScore");
 var tryAgain = document.querySelector(".tryAgain");
 var textBox = document.querySelector("#textBox");
-var yourInitialsInput = document.getElementById("#initials");
+var yourInitialsInput = document.getElementById("#yourInitialsInput");
 var submit = document.querySelector(".submit");
+var scores = document.querySelector("#scores");
 var secondsLeft = 60;
 var index = 0;
 var questions = [];
 var count = 0;
-totalScore = 0;
-highScore = 0;
 
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
@@ -143,7 +140,7 @@ function checkAnswer(i){
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
-        localStorage.setItem("count",count);
+        localStorage.setItem("count",JSON.stringify(count));
         console.log(count);//check for errors
 
     }
@@ -173,34 +170,53 @@ function results() {
     resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
-  
-
   //Gets the total score from the incremented count value found in CallQuestion function
-  
   //Displays the total score - NEED TO FIX.
- 
   textBox.innerHTML = `Enter your initials Here!`;
- 
-localStorage.setItem("highScore", highScore);  
-totalScore =localStorage.getItem("count", count);
-totalScore =parseInt(totalScore);
-
-highScore.textContent = `Your total score is ${totalScore}. The high score is ${highScore}`;
-
-textBox.addEventListener("input",function(){
-    localStorage.setItem(JSON.stringify("input", initials));
-});
-
-submit.addEventListener("click", function(){
-    textBox.value = localStorage.setItem(JSON.parse("initials"));
-    highScore.textContent = localStorage.setItem(JSON.parse())
-
-});
 }
 
+var myScore = localStorage.getItem("count", count);
+myScore = parseInt(myScore);
+
+
+submit.addEventListener("click", function(event) {
+    event.preventDefault();
+    
+    var allTimeScoresandInitials = {
+        initials:yourInitialsInput.value,
+        myScore:myScore.value,
+    }
+
+    localStorage.setItem("allTimeScoresandInitialsLocal", JSON.stringify(allTimeScoresandInitials));
+    returnItems();
+    console.log(allTimeScoresandInitials);
+    console.log(JSON.stringify(allTimeScoresandInitials));
+    console.log("You clicked on Submit"); 
+    scores.innerHTML = JSON.parse(localStorage.getItem("yourInitialsInput", "allTimeScores"));
+    console.log(scores);
+});
+
+function returnItems() {
+    
+    console.log(JSON.parse(localStorage.getItem("allTimeScoresandInitialsLocal")));
+}
+
+//textBox.value = localStorage.setItem( JSON.par("initials"));
 //}
 
-//calls the start game function when Start is clicked.
+//allTimeScores = localStorage.getItem("alltime_highscores");
+
+
+//allTimeScores=[
+   // {initials:"dw", score: 50},
+    //{initials:"kim", score: 60},
+//]
+/*
+1. make an Array.empty(from previous quiz attempts)
+var myScores = [];
+2. when you're ready to save a new socre object... make that object that looks like 194-197.
+3. Push into our Array, set into localStorage.clear4. revise the way you defined the Array. It shouldn't be empty on page load unless nobody's taken the quiz/local storage is empty. If it's empty 
+//calls the start game function when Start is clicked.*/
 startButton.addEventListener("click", function() {
     startGame();
 }

@@ -11,7 +11,7 @@ var timeEl = document.querySelector(".timerElement");
 var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
-var tryAgain = document.querySelector(".tryAgain");
+var startAgain = document.querySelector("#startAgain");
 var form = document.querySelector("#form");
 var submit = document.querySelector(".submit");
 var scores = document.querySelector("#scores");
@@ -23,6 +23,8 @@ var count = 0;
 
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
+
+
 score.innerHTML = myScore;
 console.log(myScore);
 
@@ -69,6 +71,7 @@ questions = [
 ]
 //default value of startcard is display:none. This shows the card at the beginning and I can remove it after startGame function is called.
 startCard.style.display="block";
+startAgain.style.display="none";
 
 //startGame function defined. Hide the start button, display 'first' question, start timer.
 function startGame() {
@@ -76,6 +79,9 @@ function startGame() {
     startCard.style.display = "none";
     questionCard.style.display = "block";
     resultsCard.style.display = "none";
+    startAgain.style.display="block";
+   
+   
     //displays question and choices
     callQuestion();
     //starts the timer
@@ -118,6 +124,7 @@ function callQuestion(){
         //reset the text of the question and choice elements.
         questionEl.innerHTML="";
         choicesEl.innerHTML="";
+    
         //reset my count at 1 so it isn't being added twice.
         //count=0;
         
@@ -179,9 +186,13 @@ console.log(myScore);
 score.innerHTML=(`Your high score is currently: ${myScore}`);
 
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
+startAgain.addEventListener("click", function(e){
+    startGame();
+});
 
 //calls the start game function when Start is clicked.
 startButton.addEventListener("click", function() {
     startGame();
 }
 );
+

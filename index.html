@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel = "stylesheet" href = "Assets/CSS/style.css">
-    <title>Bacgithelorette Quiz</title>
+    <title>Bachelorette Quiz</title>
 </head>
 
 <body>
@@ -40,10 +40,10 @@
                 <h1 class="question"></h1>
               
                 <ul>
-                    <li class="choices" onclick = "checkAnswer(0)"></li>
-                    <li class="choices" onclick = "checkAnswer(1)"></li>
-                    <li class="choices" onclick = "checkAnswer(2)"></li>
-                    <li class="choices" onclick = "checkAnswer(3)"></li>
+                    <button class="choices" onclick = "checkAnswer(0)"></button>
+                    <button class="choices" onclick = "checkAnswer(1)"></button>
+                    <button class="choices" onclick = "checkAnswer(2)"></button>
+                    <button class="choices" onclick = "checkAnswer(3)"></button>
                 </ul>
             
                 <!-- Submit your answer -->
@@ -60,20 +60,12 @@
         <div class = "resultsCard">
         <br>
 
-        <form id="form">
+     
 
-            <label>Enter your Initials here to save your high score!</label>
-                <input id="yourInitialsInput"> 
-                <p class ="myScore"><p1>
-                <br>
-            <label>Your high score:</label>
-                <br>
-            <button class="submit"></button>
-        </form>
-
-            <button class = "tryAgain" onclick="startGame()">Try Again?</button>
+           
             </div>
-
+  
+            <button id = "startAgain">Start Again</button>  
 
     </main>
     <script src = "JS/script.js"></script>

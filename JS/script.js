@@ -12,10 +12,15 @@ var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
 var startAgain = document.querySelector("#startAgain");
-var form = document.querySelector("#form");
-var submit = document.querySelector(".submit");
+
 var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
+var todoInput = document.querySelector("#todo-text");
+var todoForm = document.querySelector("#todo-form");
+var todoList = document.querySelector("#todo-list");
+var todoCountSpan = document.querySelector("#todo-count");
+
+var todos = [];
 var secondsLeft = 60;
 var index = 0;
 var questions = [];
@@ -185,6 +190,87 @@ myScore = parseInt(myScore);
 console.log(myScore);
 score.innerHTML=(`Your high score is currently: ${myScore}`);
 
+// The following function renders items in a todo list as <li> elements
+// The following function renders items in a todo list as <li> elements
+function renderTodos() {
+    // Clear todoList element and update todoCountSpan
+    todoList.innerHTML = "";
+    todoCountSpan.textContent = todos.length;
+  
+    // Render a new li for each todo
+    for (var i = 0; i < todos.length; i++) {
+      var todo = todos[i];
+  
+      var li = document.createElement("li");
+      li.textContent = todo;
+      li.setAttribute("data-index", i);
+  
+      var buttontodo = document.createElement("todobutton");
+      buttontodo.textContent = "";
+  
+      li.appendChild(buttontodo);
+      todoList.appendChild(li);
+    }
+  }
+  
+  // This function is being called below and will run when the page loads.
+  function init() {
+    // Get stored todos from localStorage
+    var storedInitials = JSON.parse(localStorage.getItem("todos"));
+  
+    // If todos were retrieved from localStorage, update the todos array to it
+    if (storedInitials !== null) {
+      todos = storedInitials;
+    }
+  
+    // This is a helper function that will render todos to the DOM
+    renderTodos();
+  }
+  
+  function storeTodos() {
+    // Stringify and set key in localStorage to todos array
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
+  
+  // Add submit event to form
+  todoForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    var todoText = todoInput.value.trim();
+  
+    // Return from function early if submitted todoText is blank
+    if (todoText === "") {
+      return;
+    }
+  
+    // Add new todoText to todos array, clear the input
+    todos.push(todoText);
+    todoInput.value = "";
+  
+    // Store updated todos in localStorage, re-render the list
+    storeTodos();
+    renderTodos();
+  });
+  
+  // Add click event to todoList element
+  todoList.addEventListener("click", function(event) {
+    var element = event.target;
+  
+    // Checks if element is a button
+    if (element.matches("button") === true) {
+      // Get its data-index value and remove the todo element from the list
+      var index = element.parentElement.getAttribute("data-index");
+      todos.splice(index, 1);
+  
+      // Store updated todos in localStorage, re-render the list
+      storeTodos();
+      renderTodos();
+    }
+  });
+  
+
+
+
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 startAgain.addEventListener("click", function(e){
     startGame();
@@ -195,4 +281,5 @@ startButton.addEventListener("click", function() {
     startGame();
 }
 );
-
+  // Calls init to retrieve data and render it to the page on load
+  init();

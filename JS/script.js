@@ -18,8 +18,10 @@ var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
 var initialsInput = document.querySelector("#initials-text");
 var initialsForm = document.querySelector("#initials-form");
-var initialsList= document.querySelector("#initialsList");
-var myScore = document.querySelector("myScore");
+var initialsList= document.querySelector("#initials-list");
+var myScoreTextContent = document.querySelector(".myScore");
+var myScore;
+
 
 var initials= [];
 var secondsLeft = 60;
@@ -149,20 +151,19 @@ function callQuestion(){
 
 }
 function checkAnswer(i){
-    console.log(i);
-    console.log(questions[index].correctAnswer)
+
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
-        localStorage.setItem("count",JSON.stringify(count));
         console.log(count);//check for errors
-
+        
     }
     else{
         //change nothing in my count var.
         console.log("Wrong Answer");
-
+        
     }
+    localStorage.setItem("count",JSON.stringify(count));
 }
     
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
@@ -176,8 +177,7 @@ function navigate(direction) {
 nextQuestion.addEventListener("click", function () {
     navigate(1);
     callQuestion();
-}
-)
+});
 
 //Displays how many you got right. Will (eventually) allow you to enter initials with score and save to local storage.
 function results() {
@@ -190,28 +190,28 @@ function results() {
 }
 
 
-myScore = localStorage.getItem("count", count);
-myScore = parseInt(myScore);
-console.log(myScore);
-score.innerHTML=(`Your high score is currently: ${myScore}`);
 
 // The following function renders items in a todo list as <li> elements
 function renderInitials() {
     // Clear initialsList element and update myScore
+    myScore = JSON.parse(localStorage.getItem("count"));
+    score.innerHTML=(`Your high score is currently: ${myScore}`);
     initialsList.innerHTML = "";
-    myScore.textContent = myScore;
-  
+    
+    console.log(myScore);
+    myScoreTextContent.textContent = myScore || "no score";
+  //it is now a number. myScore variable is grabbed by access to the dom. But once the parse/local storage executes the dom access point is no longer valid, it becomes a number. We are not accessing the dom anymore. 
     // Render a new li for each todo
     for (var i = 0; i < initials.length; i++) {
-        initials = initials[i];
+       // initials = initials[i];
   
       var li = document.createElement("li");
-      li.textContent = initials;
+      li.textContent = (`${initials[i].initials} - High Score: ${initials[i].score}`)
       li.setAttribute("data-index", i);
   
       var buttontodo = document.createElement("todobutton");
       buttontodo.style.fontSize ="21px";
-      buttontodo.textContent = (`  - ${myScore}`);
+      //buttontodo.textContent = (`  - ${myScore}`);
   
       li.appendChild(buttontodo);
       initialsList.appendChild(li);
@@ -221,37 +221,37 @@ function renderInitials() {
   // This function is being called below and will run when the page loads.
   function init() {
     // Get stored todos from localStorage
-    var storedInitials = JSON.parse(localStorage.getItem("initials"));
+    var storedInitials = JSON.parse(localStorage.getItem("userHighScores"));
   
     // If todos were retrieved from localStorage, update the todos array to it
     if (storedInitials !== null) {
       initials = storedInitials;
     }
-  
+  console.log(initials);
     // This is a helper function that will render todos to the DOM
     renderInitials();
   }
   
   function storeInitials() {
     // Stringify and set key in localStorage to todos array
-    localStorage.setItem("initials", JSON.stringify(initials));
+    localStorage.setItem("userHighScores", JSON.stringify(initials));
   }
   
   // Add submit event to form
   initialsForm.addEventListener("submit", function(event) {
     event.preventDefault();
-  
     var initialsText = initialsInput.value;
-    console.log(initialsText);
-    console.log(initialsInput.value);
-  
+    
     // Return from function early if submitted todoText is blank
     if (initialsText === "") {
       return;
     }
-  
+    console.log(myScore);
     // Add new todoText to todos array, clear the input
-    initials.push(initialsText);
+    initials.push({
+        score: myScore,
+        initials: initialsText,
+    });
     initialsInput.value = "";
   
     // Store updated todos in localStorage, re-render the list
@@ -260,7 +260,7 @@ function renderInitials() {
   });
   
   // Add click event to initialsList element
-  initialsList.addEventListener("click", function(event) {
+ /* initialsList.addEventListener("click", function(event) {
     var element = event.target;
   
     // Checks if element is a button
@@ -273,11 +273,9 @@ function renderInitials() {
       storeInitials();
       renderInitials();
     }
+    
   });
-  
-
-
-
+  */
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 startAgain.addEventListener("click", function(){
     startGame();

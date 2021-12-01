@@ -12,13 +12,14 @@ var startCard = document.querySelector(".startCard");
 var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
 var startAgain = document.querySelector("#startAgain");
+var timerInterval;
 
 var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
 var todoInput = document.querySelector("#todo-text");
 var todoForm = document.querySelector("#todo-form");
 var todoList = document.querySelector("#todo-list");
-var todoCountSpan = document.querySelector("#todo-count");
+var myScore = document.querySelector("myScore");
 
 var todos = [];
 var secondsLeft = 60;
@@ -85,7 +86,11 @@ function startGame() {
     questionCard.style.display = "block";
     resultsCard.style.display = "none";
     startAgain.style.display="block";
-   
+    index=0;
+    secondsLeft=60;
+    if (timerInterval){
+        clearInterval(timerInterval);
+    }
    
     //displays question and choices
     callQuestion();
@@ -99,7 +104,7 @@ function startGame() {
 //Start the timer when user clicks start. Want this to be a global function.
 function setTime() {
     // Sets interval in variable
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         secondsLeft--;
         //inserts timer element, starting at 120 seconds
         //Advises the user how many seconds are left.
@@ -185,17 +190,18 @@ function results() {
 }
 
 
-var myScore = localStorage.getItem("count", count);
+myScore = localStorage.getItem("count", count);
 myScore = parseInt(myScore);
 console.log(myScore);
 score.innerHTML=(`Your high score is currently: ${myScore}`);
+
 
 // The following function renders items in a todo list as <li> elements
 // The following function renders items in a todo list as <li> elements
 function renderTodos() {
     // Clear todoList element and update todoCountSpan
     todoList.innerHTML = "";
-    todoCountSpan.textContent = todos.length;
+    myScore.textContent = myScore;
   
     // Render a new li for each todo
     for (var i = 0; i < todos.length; i++) {
@@ -206,7 +212,7 @@ function renderTodos() {
       li.setAttribute("data-index", i);
   
       var buttontodo = document.createElement("todobutton");
-      buttontodo.textContent = "";
+      buttontodo.textContent = (`  - ${myScore}`);
   
       li.appendChild(buttontodo);
       todoList.appendChild(li);
@@ -272,7 +278,7 @@ function renderTodos() {
 
 
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
-startAgain.addEventListener("click", function(e){
+startAgain.addEventListener("click", function(){
     startGame();
 });
 

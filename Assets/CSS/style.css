@@ -1,5 +1,7 @@
 *{
     max-height:100vh;
+    font-size:1rem;
+    
 }
 :root{
     --main-border:.5rem #028090;
@@ -84,9 +86,9 @@ p.score {
     color:#1d2671;
     margin:auto;
     height:3.5rem;
-    width:10rem;
-    font-size:1rem;
-    border-radius:10%;
+    width:12rem;
+    font-size:1.3rem;
+    border-radius:15px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin-bottom:1rem;
     transition-duration:.4s;
@@ -119,7 +121,7 @@ p.score {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     }
-
+ 
 h1.question{
     margin:auto;
     width:auto;
@@ -133,7 +135,22 @@ h1.question{
     text-align:center;
     
 }
+h1{
+    font-size:2rem;
+}
+form, label, input, ul, li, p{
+    font-size:1.5rem;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+#todo-count{
+    font-size:1.5rem;
+}
+li{
+    font-size:1.5rem;
+    list-style-type:none;
 
+}
 .choices {
    display:inline-block;
     padding: .5rem 1rem;
@@ -160,7 +177,7 @@ h1.question{
       font-size:2rem;
   }
 
-  .choices:active{
+  .choices:active {
     background-color: white;
     color:rgb(29,38,113);
     font-size:2rem;

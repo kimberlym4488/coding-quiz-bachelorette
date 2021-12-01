@@ -16,12 +16,12 @@ var timerInterval;
 
 var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
-var todoInput = document.querySelector("#todo-text");
-var todoForm = document.querySelector("#todo-form");
-var todoList = document.querySelector("#todo-list");
+var initialsInput = document.querySelector("#initials-text");
+var initialsForm = document.querySelector("#initials-form");
+var initialsList= document.querySelector("#initialsList");
 var myScore = document.querySelector("myScore");
 
-var todos = [];
+var initials= [];
 var secondsLeft = 60;
 var index = 0;
 var questions = [];
@@ -195,82 +195,83 @@ myScore = parseInt(myScore);
 console.log(myScore);
 score.innerHTML=(`Your high score is currently: ${myScore}`);
 
-
 // The following function renders items in a todo list as <li> elements
-// The following function renders items in a todo list as <li> elements
-function renderTodos() {
-    // Clear todoList element and update todoCountSpan
-    todoList.innerHTML = "";
+function renderInitials() {
+    // Clear initialsList element and update myScore
+    initialsList.innerHTML = "";
     myScore.textContent = myScore;
   
     // Render a new li for each todo
-    for (var i = 0; i < todos.length; i++) {
-      var todo = todos[i];
+    for (var i = 0; i < initials.length; i++) {
+        initials = initials[i];
   
       var li = document.createElement("li");
-      li.textContent = todo;
+      li.textContent = initials;
       li.setAttribute("data-index", i);
   
       var buttontodo = document.createElement("todobutton");
+      buttontodo.style.fontSize ="21px";
       buttontodo.textContent = (`  - ${myScore}`);
   
       li.appendChild(buttontodo);
-      todoList.appendChild(li);
+      initialsList.appendChild(li);
     }
   }
   
   // This function is being called below and will run when the page loads.
   function init() {
     // Get stored todos from localStorage
-    var storedInitials = JSON.parse(localStorage.getItem("todos"));
+    var storedInitials = JSON.parse(localStorage.getItem("initials"));
   
     // If todos were retrieved from localStorage, update the todos array to it
     if (storedInitials !== null) {
-      todos = storedInitials;
+      initials = storedInitials;
     }
   
     // This is a helper function that will render todos to the DOM
-    renderTodos();
+    renderInitials();
   }
   
-  function storeTodos() {
+  function storeInitials() {
     // Stringify and set key in localStorage to todos array
-    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("initials", JSON.stringify(initials));
   }
   
   // Add submit event to form
-  todoForm.addEventListener("submit", function(event) {
+  initialsForm.addEventListener("submit", function(event) {
     event.preventDefault();
   
-    var todoText = todoInput.value.trim();
+    var initialsText = initialsInput.value;
+    console.log(initialsText);
+    console.log(initialsInput.value);
   
     // Return from function early if submitted todoText is blank
-    if (todoText === "") {
+    if (initialsText === "") {
       return;
     }
   
     // Add new todoText to todos array, clear the input
-    todos.push(todoText);
-    todoInput.value = "";
+    initials.push(initialsText);
+    initialsInput.value = "";
   
     // Store updated todos in localStorage, re-render the list
-    storeTodos();
-    renderTodos();
+    storeInitials();
+    renderInitials();
   });
   
-  // Add click event to todoList element
-  todoList.addEventListener("click", function(event) {
+  // Add click event to initialsList element
+  initialsList.addEventListener("click", function(event) {
     var element = event.target;
   
     // Checks if element is a button
     if (element.matches("button") === true) {
-      // Get its data-index value and remove the todo element from the list
+      // Get its data-index value and remove the initial element from the list
       var index = element.parentElement.getAttribute("data-index");
-      todos.splice(index, 1);
+      initials.splice(index, 1);
   
-      // Store updated todos in localStorage, re-render the list
-      storeTodos();
-      renderTodos();
+      // Store updated initials in localStorage, re-render the list
+      storeInitials();
+      renderInitials();
     }
   });
   

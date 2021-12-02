@@ -13,7 +13,7 @@ var questionCard = document.querySelector(".questionCard");
 var resultsCard = document.querySelector(".resultsCard");
 var startAgain = document.querySelector("#startAgain");
 var timerInterval;
-
+var banner = document.querySelector(".banner");
 var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
 var initialsInput = document.querySelector("#initials-text");
@@ -32,49 +32,110 @@ var count = 0;
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
 
-
-score.innerHTML = myScore;
 console.log(myScore);
 
 questions = [
+    
     {
-        question: "What is the occupation of Michelle Young as of 2021?",
+        question: "How many outfits does the production team supply contestants?",
         choices: [
-            "Social Media Influencer",
-            "Educator",
-            "Basketball Coach",
-            "Dental Hygienist"],
+        "All",
+        "5",
+        "1",
+        "None"],
+        correctAnswer: 3
+    },
+    {
+        question: "What tests do you have to take before being cast on the show?",
+        choices: [
+        "Vision",
+        "Psychological",
+        "Educational",
+        "None"],
         correctAnswer: 1
     },
-
+    
     {
-        question: "Who received the first Impression Rose on night 1?",
+        question: "Which of the following can you NOT bring with you?",
         choices: [
-        "Rick",
-         "Joe",
-         "Nayte",
-         "Brandon"],
+        "Bible",
+        "Journal",
+        "Phone",
+        "Craft Supplies"],
         correctAnswer: 2
     },
-
     {
-        question: "Who or what did contestant Ryan F bring to his hotel room that got him kicked off on night 1?",
+        question: "The show limits contestants to how many drinks per hour?",
         choices: [
-        "Study notes",
-        "Pictures of ex-girlfriend",
-        "A producer on the show",
-        "Illegal substance"],
+        "1",
+        "2",
+        "3",
+        "No limit"],
+        correctAnswer: 1
+    },
+    {
+        question: "Contestants are only allowed to do one of the following:",
+        choices: [
+        "Bring their own music.",
+        "Eat the food on dates.",
+        "Watch movies.",
+        "Meet with a psychologist"],
+        correctAnswer: 3
+    },
+    
+    {
+        question: "How many suitcases can you bring?",
+        choices: [
+        "1",
+        "2",
+        "3",
+        "As many as you want"],
+        correctAnswer: 2
+    },
+    {
+        question: "What event takes place at the end of most episodes of The Bachelor/Bachelorette?",
+        choices: [
+        "Rose Ceremony",
+        "Cocktail Party",
+        "1-on-1 Date",
+        "Engagement"],
         correctAnswer: 0
     },
-
     {
-        question: "Who ghosted Michelle before the season started?",
+        question: "Who was the first Latino lead of The Bachelor?",
         choices: [
-        "Joe",
-        "Tayshia",
-        "Her dad",
-        "Rick"],
-        correctAnswer: 0
+        "Jake Pavelka",
+        "Arie Luyendyk Jr.",
+        "Ben Flanjnik",
+        "Juan Pablo Galvais"],
+        correctAnswer: 3
+    },
+    {
+        question: "Who was the first African-American Lead of The Bachelorette?",
+        choices: [
+        "Kaitlyn Bristowe",
+        "Tayshia Adams",
+        "Rachel Lindsay",
+        "Madison Prewett"],
+        correctAnswer: 2
+    },
+    {
+        question: "How old was the oldest Bachelorette Lead (when her season aired)?",
+        choices: [
+        "33",
+        "35",
+        "37",
+        "39"],
+        correctAnswer: 3
+    },
+    {
+        question: "Who is the oldest Bachelor Lead (when his season aired)?",
+        choices: [
+        "Arie Luyendyk Jr.",
+        "Byron Velvick",
+        "Nick Viall",
+        "Brad Womack"],
+        correctAnswer: 1
     },
 ]
 //default value of startcard is display:none. This shows the card at the beginning and I can remove it after startGame function is called.
@@ -127,6 +188,9 @@ function setTime() {
 function callQuestion(){
     
     //if my current index point is greater than the length of my question array then I start the results();
+    banner.innerHTML=(`Number correct: ${count}`);
+ 
+    console.log(count);
     if(index >= questions.length){
         console.log("Hello Wolrd");
         results();
@@ -155,6 +219,7 @@ function checkAnswer(i){
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
+        
         console.log(count);//check for errors
         
     }
@@ -163,8 +228,12 @@ function checkAnswer(i){
         console.log("Wrong Answer");
         
     }
+    console.log(count);
+    
     localStorage.setItem("count",JSON.stringify(count));
-}
+    navigate(1);
+    callQuestion();
+};
     
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
 function navigate(direction) {
@@ -195,7 +264,7 @@ function results() {
 function renderInitials() {
     // Clear initialsList element and update myScore
     myScore = JSON.parse(localStorage.getItem("count"));
-    score.innerHTML=(`Your high score is currently: ${myScore}`);
+    
     initialsList.innerHTML = "";
     
     console.log(myScore);

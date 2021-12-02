@@ -64,9 +64,16 @@ background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, F
     
 }
 
+.banner{
+    font-size:1.5rem;
+    color:white;
+    background-color:none;
+    padding-top:1rem;
+}
+
 p.score {
     color:white;
-    font-size:2rem;
+    font-size:1.5rem;
 
 }
 
@@ -122,18 +129,26 @@ p.score {
     padding-bottom: 1.5rem;
     }
  
+div.myScore{
+    display:none;
+}    
+
 h1.question{
-    margin:auto;
+    padding-top:2rem;
     width:auto;
     font-size:1.5rem;
     background-color:none;
     color:white;
     font-style:bold;
     text-shadow:#C33764;
-    padding:1rem;
+    margin:1rem;
     margin:auto;
     text-align:center;
     
+}
+header{
+   
+    border-bottom:10px white solid;
 }
 h1{
     font-size:2rem;

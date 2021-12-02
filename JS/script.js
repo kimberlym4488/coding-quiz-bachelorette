@@ -219,7 +219,6 @@ function checkAnswer(i){
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
-        
         console.log(count);//check for errors
         
     }

@@ -297,12 +297,8 @@ function renderInitials() {
   function storeInitials() {
     // Stringify and set key in localStorage to todos array
     localStorage.setItem("userHighScores", JSON.stringify(initials));
-  }
   
   // Add submit event to form
-  saveScore.addEventListener("click", function(event) {
-    event.preventDefault();
-    event.currentTarget;
     var initialsText = initialsInput.value;
     
     // Return from function early if submitted todoText is blank
@@ -320,7 +316,7 @@ function renderInitials() {
     // Store updated todos in localStorage, re-render the list
     storeInitials();
     renderInitials();
-  });
+  };
   
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 startAgain.addEventListener("click", function(){
@@ -332,6 +328,11 @@ startButton.addEventListener("click", function() {
     startGame();
 }
 );
-
+//what is the difference between putting this here and inside thhe function? here it is screwing up my counts for some reason!
+saveScore.addEventListener("click", function(event) {
+    event.preventDefault();
+    storeInitials();
+});
+//add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load
   init();

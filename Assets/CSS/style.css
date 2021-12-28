@@ -15,6 +15,7 @@ body {
     background: #C33764;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat:no-repeat;
     text-decoration:none;        
     font-family:arial;
     font-size:1rem;
@@ -24,7 +25,6 @@ body {
     box-sizing:border-box;
     max-height:100vh;
     max-width:100vw;
-
 }
 
 .startCard {
@@ -34,36 +34,44 @@ body {
     box-shadow: inset 0 0 13px #000000;
     padding: top 1.5rem;
     padding: bottom 1.5rem;
-    
 }
 
 .timerElement{
     color:white;
-    font-size:1.5rem;
+    font-size:1.1rem;
     padding:1rem;
-
 }
-#mainTitle{
-    display:block;
-    padding-top:2rem;
-    font-size:3rem;
+
+header{
     color:white;
-    line-height:3rem;
+    line-height:2rem;
     background-color:rgb(29,38,113,.5);
+    background-repeat:no-repeat;
 }
 
-.subtitle {
-    font-size:1.5rem;
-    line-height:5rem;
-    font-style:bold;
-    color:white;
+nav{
     background-color:rgb(29,38,113,.5);
     fill-opacity:50%;
+}
+
+.hero{
+    display:inline-block;
+    background-position:center;
+    background-position:center;
+    height:auto;
+    width:90%;
+    box-sizing:border-box;
     
 }
 
+.subtitle {
+    font-size:1rem;
+    line-height:2rem;
+    font-style:bold;  
+}
+
 .banner{
-    font-size:1.5rem;
+    font-size:1.1rem;
     color:white;
     background-color:none;
     padding-top:1rem;
@@ -71,21 +79,16 @@ body {
 
 p.score {
     color:white;
-    font-size:1.5rem;
-
+    font-size:1rem;
 }
 
-#welcomeMessage{
-    font-size:1.5rem;
+.welcomeMessage{
+    font-size:1rem;
     line-height:2rem;
     padding:top 1rem;
     padding:bottom 1rem;
     padding:1rem;
 }
-
-.subtitle{
-    line-height:2rem;
-  }
 
 #startButton, #nextQuestion, #startAgain, #saveScore{
     display:block;
@@ -97,7 +100,7 @@ p.score {
     margin:auto;
     height:3.5rem;
     width:12rem;
-    font-size:1.3rem;
+    font-size:1.1rem;
     border-radius:15px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     margin-bottom:1rem;
@@ -143,7 +146,7 @@ div.myScore{
 h1.question{
     padding-top:2rem;
     width:auto;
-    font-size:1.5rem;
+    font-size:1.1rem;
     background-color:none;
     color:white;
     font-style:bold;
@@ -158,10 +161,10 @@ header{
     border-bottom:10px white solid;
 }
 h1{
-    font-size:2rem;
+    font-size:1.2rem;
 }
 form, label, input, ul, li, p{
-    font-size:1.5rem;
+    font-size:1.1rem;
     margin-top:1rem;
     margin-bottom:1rem;
 }
@@ -178,17 +181,17 @@ ul {
 }
 
 #todo-count{
-    font-size:1.5rem;
+    font-size:1.1rem;
 }
 li{
-    font-size:1.5rem;
+    font-size:1.1rem;
     list-style-type:none;
 
 }
 .choices {
    display:inline-block;
     padding: .5rem 1rem;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
@@ -205,19 +208,14 @@ li{
     margin-top:1rem;
   }
   
-  .choices:hover {
+  .choices:active {
       background-color: white;
       color:rgb(29,38,113);
-      font-size:1.5rem;
+      font-size:1.1rem;
+      box-shadow: 0 10px #666;
+      transform: translateY(4px);
   }
 
-  .choices:active {
-    background-color: white;
-    color:rgb(29,38,113);
-    font-size:1.5rem;
-    box-shadow: 0 10px #666;
-    transform: translateY(4px);
-  }
 
 
 

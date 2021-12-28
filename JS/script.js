@@ -33,8 +33,6 @@ var count = 0;
 //questions[0].choices[2]
 //array of questions. index we call on for current and next question. array, object in array(question object-choices[array]-answer object)
 
-console.log(myScore);
-
 questions = [
     
     {
@@ -237,8 +235,6 @@ function checkAnswer(i){
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
 function navigate(direction) {
     index = index + direction;
-    console.log(index);
-    console.log(questions[index]);
 }
 //Navigates +1 in the index and returns to the call question function.
 nextQuestion.addEventListener("click", function () {
@@ -259,8 +255,10 @@ function results() {
 
 // The following function renders items in a todo list as <li> elements
 function renderInitials() {
+    console.log(myScore)
     // Clear initialsList element and update myScore
-    myScore = JSON.parse(localStorage.getItem("count"));  
+    myScore = JSON.parse(localStorage.getItem("count")); 
+    console.log(myScore);
     initialsList.innerHTML = "";
     myScoreTextContent.textContent = myScore || "no score";
   //it is now a number. myScore variable is grabbed by access to the dom. But once the parse/local storage executes the dom access point is no longer valid, it becomes a number. We are not accessing the dom anymore. 
@@ -278,7 +276,9 @@ function renderInitials() {
   
       li.appendChild(buttontodo);
       initialsList.appendChild(li);
+   
     }
+    return;
   }
   
   // This function is being called below and will run when the page loads.
@@ -290,37 +290,39 @@ function renderInitials() {
     if (storedInitials !== null) {
       initials = storedInitials;
     }
-
     // This is a helper function that will render todos to the DOM
     renderInitials();
   }
   
   function storeInitials() {
+      console.log(initials);
+      myScore = JSON.parse(localStorage.getItem("count"));
+      var initialsText = initialsInput.value;
+      initials.push({
+          score: myScore,
+          initials: initialsText,
+      });
     // Stringify and set key in localStorage to todos array
     localStorage.setItem("userHighScores", JSON.stringify(initials));
   
-  // Add submit event to form
-    var initialsText = initialsInput.value;
-    
     // Return from function early if submitted todoText is blank
     if (initialsText === "") {
       return;
     }
-    
+
     // Add new todoText to todos array, clear the input
-    initials.push({
-        score: myScore,
-        initials: initialsText,
-    });
     initialsInput.value = "";
   
-    // Store updated todos in localStorage, re-render the list
-    storeInitials();
+    // Store updated initials in localStorage, re-render the list
+  
     renderInitials();
+    
   };
   
+
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 startAgain.addEventListener("click", function(){
+    saveScore.disabled = false;
     startGame();
 });
 
@@ -332,8 +334,9 @@ startButton.addEventListener("click", function() {
 //what is the difference between putting this here and inside thhe function? here it is screwing up my counts for some reason!
 saveScore.addEventListener("click", function(event) {
     event.preventDefault();
+    this.disabled = true;
     storeInitials();
 });
 //add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load
-  init();
+  //init();

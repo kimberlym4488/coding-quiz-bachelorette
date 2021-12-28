@@ -251,7 +251,8 @@ function results() {
     resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
-   
+    incorrectAnswer.style.display="none";
+       
   //Gets the total score from the incremented count value found in CallQuestion function
   //Displays the total score - NEED TO FIX.
 }

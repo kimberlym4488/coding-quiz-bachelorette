@@ -1,91 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "Assets/CSS/style.css">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
     <title>Bachelorette Quiz</title>
 </head>
 
 <body>
-    <main class = "container">
-        
+    <main class="container">
+
         <header>
 
-      <nav id = "mainTitle">Bachelorette Trivia</nav>
-    <div class = "subtitle">Are you here for the right reasons?</div>
-            <p class="score"></p>
-            <p class = "banner" placeholder = "Good Luck!"></p>
-      <br>
-    </header>
-       
+            <nav id="mainTitle">Bachelorette Trivia</nav>
+            <div class="subtitle">Are you here for the right reasons?</div>
+            <p class="score incorrectAnswer correctAnswer"></p>
+            <p class="banner " placeholder="Good Luck!"></p>
+            <br>
+        </header>
 
-
-        <div class = "startCard">
-        
-            <nav id = "welcomeMessage">How well do you know Bachelorette history? <br>See how many questions you can answer correctly in 2 minutes.
-             
+        <div class="startCard">
+            <nav id="welcomeMessage">How well do you know Bachelorette history? <br><br>See how many questions you can
+                answer correctly in 2 minutes.
             </nav><br>
 
-            <button id = "startButton">Start Quiz</button>
+            <button id="startButton">Start Quiz</button>
 
-        <br>
-        </div>    
-
-        <div class = "questionCard">
-
-         
-            <div class = "questions"></div>
-       
-                <h1 class="question"></h1>
-              
-                <ul>
-                    <button class="choices" onclick = "checkAnswer(0)"></button>
-                    <button class="choices" onclick = "checkAnswer(1)"></button>
-                    <button class="choices" onclick = "checkAnswer(2)"></button>
-                    <button class="choices" onclick = "checkAnswer(3)"></button>
-                </ul>
-            
-                <!-- Submit your answer -->
-            
-            <div class = "correctAnswer"></div>
-
-            <button id = "nextQuestion">Next Question</button>
-            <div class = "timerElement"></div>
-          
-
+            <br>
         </div>
-        
-      
-        <div class = "resultsCard">
-        <br>
+
+        <div class="questionCard">
+            <div class="questions "></div>
+            <h1 class="question"></h1>
+            <ul >
+                <button class="choices" onclick="checkAnswer(0)"></button>
+                <button class="choices" onclick="checkAnswer(1)"></button>
+                <button class="choices" onclick="checkAnswer(2)"></button>
+                <button class="choices" onclick="checkAnswer(3)"></button>
+            </ul>
+            <!-- Submit your answer -->
+            <div class="correctAnswer"></div>
+            <button id="nextQuestion">Next Question</button>
+            <div class="timerElement"></div>
+        </div>
+
+        <div class="resultsCard">
+            <br>
             <div id="card">
 
-            <h1>High Score? Save it here or start over.</h1>
+                <h1>High Score? Save it here or start over.</h1>
+                <form id="initials-form" method="POST">
+                    <input type="text" placeholder="My initials are..." name="initials-text" style="text-align:center" id="initials-text" />
+                   <br>
+                    <button id="saveScore">Save my Score</button>
+                </form>
+                <div class="myScore"></div>
 
-            <form id="initials-form" 
-                method="POST">
-              <label for="initials-text">Enter Your Initials Here: </label>
-              <input type="text" placeholder="My initials are..." name="initials-text" id="initials-text" />
-
-            </form>
-            <div class = "myScore"></div>
-
-            <!-- <p>Top Scores: <span id="todo-count">0</span></p -->
-            <ul id="initials-list"></ul>
-
+                <!-- <p>Top Scores: <span id="todo-count">0</span></p -->
+                <ul id="initials-list"></ul>
             </div>
-            
-         </div>   
+        </div>
 
-     
-
-  
-            <button id = "startAgain">Start Again</button>  
-
-
+        <button id="startAgain">Start Again</button>
     </main>
-    <script src = "JS/script.js"></script>
+
+    <script src="JS/script.js"></script>
 </body>
+
 </html>

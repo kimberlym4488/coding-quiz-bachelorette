@@ -3,6 +3,7 @@ var container = document.querySelector(".container");
 var startButton = document.querySelector("#startButton");
 var questionsEl = document.querySelector(".questions");
 var questionEl = document.querySelector(".question");
+var incorrectAnswer = document.querySelector(".incorrectAnswer");
 var buttonChoices = document.querySelector(".buttonChoices"); 
 var choicesEl = document.querySelectorAll(".choices");
 var correctAnswerEl = document.querySelector(".correctAnswer");
@@ -21,7 +22,7 @@ var initialsForm = document.querySelector("#initials-form");
 var initialsList= document.querySelector("#initials-list");
 var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
-
+var saveScore=document.getElementById("saveScore");
 
 var initials= [];
 var secondsLeft = 60;
@@ -150,6 +151,7 @@ function startGame() {
     resultsCard.style.display = "none";
     startAgain.style.display="block";
     index=0;
+    count=0;
     secondsLeft=60;
     if (timerInterval){
         clearInterval(timerInterval);
@@ -161,7 +163,6 @@ function startGame() {
     setTime();
     //determines question number
     navigate(0);
-
 }
 
 //Start the timer when user clicks start. Want this to be a global function.
@@ -171,7 +172,7 @@ function setTime() {
         secondsLeft--;
         //inserts timer element, starting at 120 seconds
         //Advises the user how many seconds are left.
-        timeEl.innerHTML = secondsLeft + " seconds left til the quiz ends.";
+        timeEl.innerHTML = secondsLeft + " seconds remaining";
 
         if (secondsLeft === 0) {
             // Stops execution of action at set interval
@@ -186,13 +187,15 @@ function setTime() {
 
 //This function is called from startGame() or nextQuestion eventListener.
 function callQuestion(){
-    
+    if (secondsLeft <= 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // Calls function to create and send the results message
+        results();
+    }
     //if my current index point is greater than the length of my question array then I start the results();
     banner.innerHTML=(`Number correct: ${count}`);
- 
-    console.log(count);
     if(index >= questions.length){
-        console.log("Hello Wolrd");
         results();
     }
     //if my current index(retrieved from navigate())is lower than the length of my question array I continue on with the game. 
@@ -203,31 +206,28 @@ function callQuestion(){
     
         //reset my count at 1 so it isn't being added twice.
         //count=0;
-        
         questionEl.innerHTML=questions[index].question;
-
         choicesEl.forEach(function(element,i){
             element.textContent=questions[index].choices[i];
 //forEach loop allows me to display the two items (element, and index (i) that I want to work with and be able to evaluate)
         }
         );
     }
-
 }
 function checkAnswer(i){
-
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
+        correctAnswerEl.innerHTML="Yes, that's right!"
         console.log(count);//check for errors
-        
     }
     else{
         //change nothing in my count var.
-        console.log("Wrong Answer");
-        
+        console.log(questions[index].correctAnswer);
+        console.log(secondsLeft);
+        secondsLeft = secondsLeft-10;
+        incorrectAnswer.innerHTML="Sorry, wrong answer!";
     }
-    console.log(count);
     
     localStorage.setItem("count",JSON.stringify(count));
     navigate(1);
@@ -237,7 +237,6 @@ function checkAnswer(i){
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
 function navigate(direction) {
     index = index + direction;
-  
     console.log(index);
     console.log(questions[index]);
 }
@@ -257,16 +256,11 @@ function results() {
   //Displays the total score - NEED TO FIX.
 }
 
-
-
 // The following function renders items in a todo list as <li> elements
 function renderInitials() {
     // Clear initialsList element and update myScore
-    myScore = JSON.parse(localStorage.getItem("count"));
-    
+    myScore = JSON.parse(localStorage.getItem("count"));  
     initialsList.innerHTML = "";
-    
-    console.log(myScore);
     myScoreTextContent.textContent = myScore || "no score";
   //it is now a number. myScore variable is grabbed by access to the dom. But once the parse/local storage executes the dom access point is no longer valid, it becomes a number. We are not accessing the dom anymore. 
     // Render a new li for each todo
@@ -295,7 +289,7 @@ function renderInitials() {
     if (storedInitials !== null) {
       initials = storedInitials;
     }
-  console.log(initials);
+
     // This is a helper function that will render todos to the DOM
     renderInitials();
   }
@@ -306,15 +300,16 @@ function renderInitials() {
   }
   
   // Add submit event to form
-  initialsForm.addEventListener("submit", function(event) {
+  saveScore.addEventListener("click", function(event) {
     event.preventDefault();
+    event.currentTarget;
     var initialsText = initialsInput.value;
     
     // Return from function early if submitted todoText is blank
     if (initialsText === "") {
       return;
     }
-    console.log(myScore);
+    
     // Add new todoText to todos array, clear the input
     initials.push({
         score: myScore,
@@ -327,23 +322,6 @@ function renderInitials() {
     renderInitials();
   });
   
-  // Add click event to initialsList element
- /* initialsList.addEventListener("click", function(event) {
-    var element = event.target;
-  
-    // Checks if element is a button
-    if (element.matches("button") === true) {
-      // Get its data-index value and remove the initial element from the list
-      var index = element.parentElement.getAttribute("data-index");
-      initials.splice(index, 1);
-  
-      // Store updated initials in localStorage, re-render the list
-      storeInitials();
-      renderInitials();
-    }
-    
-  });
-  */
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
 startAgain.addEventListener("click", function(){
     startGame();
@@ -354,5 +332,6 @@ startButton.addEventListener("click", function() {
     startGame();
 }
 );
+
   // Calls init to retrieve data and render it to the page on load
   init();

@@ -9,14 +9,12 @@
     --background-med:#02C39A;
     --background-dark:rgb(29,38,113,.5);
 
-
 }
-
 
 body {
     background: #C33764;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to right, #1D2671, #C33764);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1D2671, #C33764); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-decoration:none;        
     font-family:arial;
     font-size:1rem;
@@ -79,12 +77,16 @@ p.score {
 
 #welcomeMessage{
     font-size:1.5rem;
-    line-height:5rem;
+    line-height:2rem;
     padding:top 1rem;
     padding:bottom 1rem;
 }
 
-#startButton, #nextQuestion, #startAgain {
+.subtitle{
+    line-height:2rem;
+  }
+
+#startButton, #nextQuestion, #startAgain, #saveScore{
     display:block;
     border:var(--main-border);
     padding:1rem;
@@ -105,7 +107,7 @@ p.score {
     display:none;
 }
 
-#startButton:hover, #nextQuestion:hover, #startAgain:hover{
+#startButton:hover, #nextQuestion:hover, #startAgain:hover, #saveScore:hover{
     color:white;
     background-color:#1d2671;
 }
@@ -133,6 +135,10 @@ div.myScore{
     display:none;
 }    
 
+.resultsCard h1{
+    line-height:2rem;
+  }
+
 h1.question{
     padding-top:2rem;
     width:auto;
@@ -158,6 +164,18 @@ form, label, input, ul, li, p{
     margin-top:1rem;
     margin-bottom:1rem;
 }
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start:0px!important;
+
+}
+
 #todo-count{
     font-size:1.5rem;
 }
@@ -189,14 +207,18 @@ li{
   .choices:hover {
       background-color: white;
       color:rgb(29,38,113);
-      font-size:1.75rem;
+      font-size:1.5rem;
   }
 
   .choices:active {
     background-color: white;
     color:rgb(29,38,113);
-    font-size:1.75rem;
+    font-size:1.5rem;
     box-shadow: 0 10px #666;
     transform: translateY(4px);
   }
+
+
+
+
 

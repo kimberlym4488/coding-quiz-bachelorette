@@ -173,6 +173,18 @@ var obj = {
    FB.ui(obj);
  }
 
+function share() {
+    if(navigator.share){
+    navigator.share(
+    {
+      title: "Bachelor/ette Quiz Game!",
+      text: "Can you beat my high score of " + count + "?",
+      url: "https://kimberlym4488.github.io/coding-quiz-bachelorette",
+    })
+    .then(() => console.log('Successful share'))
+    .catch(error => console.log('Error sharing:', error));
+  }
+}
 //Start the timer when user clicks start. Want this to be a global function.
 function setTime() {
     // Sets interval in variable

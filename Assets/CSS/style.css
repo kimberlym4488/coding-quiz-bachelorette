@@ -116,6 +116,7 @@ p.score {
 
 #shareInvite{
     margin-top:2rem;
+    z-index:100;
 }
 .questionCard{
     display:none;

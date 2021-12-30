@@ -343,7 +343,8 @@ function renderInitials() {
   
 
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
-startAgain.addEventListener("click", function(){
+startAgain.addEventListener("click", function(event){
+    event.currentTarget;
     saveScore.disabled = false;
     startGame();
 });
@@ -363,6 +364,13 @@ saveScore.addEventListener("click", function(event) {
   // Calls init to retrieve data and render it to the page on load
   //init();
  shareInvite.addEventListener("click", function(event) {
+    event.currentTarget;
+    event.preventDefault();
+    share();
+});
+
+shareInvite.addEventListener("touchstart", function(event) {
+    event.currentTarget;
     event.preventDefault();
     share();
 });

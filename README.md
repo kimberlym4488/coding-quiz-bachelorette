@@ -13,15 +13,18 @@ https://github.com/kimberlym4488/coding-quiz-bachelorette
 This quiz is a fun way to learn some new interesting facts about the Bachelor and Bachelorette franchises. You can save your high score, along with your initals and then try again for a better score. You can also share your score and the quiz link with other members of bachelor nation fandom.
 
 # Project Previews
-## Home Page
+## Home Page - Mobile View
 (Click Image to see live page)
 
->[![Image-Preview-1](https://user-images.githubusercontent.com/92805933/144375458-144636d6-f021-4102-8d8d-d4a1b738b38c.PNG)](https://kimberlym4488.github.io/coding-quiz-bachelorette/)
+>[![Image-Preview-1](https://user-images.githubusercontent.com/92805933/147715679-067bb8da-72be-41d4-b4e8-c5e6bfcde90a.PNG)
 
-## Question Page
-(Click Image to see live page)
+## Question Page - Mobile View
 
->[![Image-Preview-2-Question](https://user-images.githubusercontent.com/92805933/144375714-0232155f-6009-4da3-a9cf-18d3fd2e08f9.PNG)](https://kimberlym4488.github.io/coding-quiz-bachelorette/)
+>![Image-Preview-3-QuestionMobile](https://user-images.githubusercontent.com/92805933/147715774-99f8492c-556e-463c-9976-d08a2e8c8e10.PNG)
+
+## Question Page - Medium Screen
+
+>[![Image-Preview-2-Question](https://user-images.githubusercontent.com/92805933/147715729-3bf11eb3-83d0-4977-a0b3-7490ec9c6e3d.PNG)
 
 # Features
 The quiz features multiple features to enhance user-interaction and repeat quiz attempts:

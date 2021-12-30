@@ -23,7 +23,7 @@ var initialsList= document.querySelector("#initials-list");
 var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
 var saveScore=document.getElementById("saveScore");
-
+var shareInvite=document.getElementById("startAgain")
 var initials= [];
 var secondsLeft = 60;
 var index = 0;
@@ -362,3 +362,7 @@ saveScore.addEventListener("click", function(event) {
 //add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load
   //init();
+ shareInvite.addEventListener("click", function(event) {
+    event.preventDefault();
+    share();
+});

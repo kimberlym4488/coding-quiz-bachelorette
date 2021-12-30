@@ -23,7 +23,7 @@ var initialsList= document.querySelector("#initials-list");
 var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
 var saveScore=document.getElementById("saveScore");
-var shareInvite=document.getElementById("startAgain")
+var shareInvite=document.getElementById("shareInvite")
 var initials= [];
 var secondsLeft = 60;
 var index = 0;
@@ -184,6 +184,7 @@ function share() {
     .then(() => console.log('Successful share'))
     .catch(error => console.log('Error sharing:', error));
   }
+  return;
 }
 //Start the timer when user clicks start. Want this to be a global function.
 function setTime() {
@@ -343,6 +344,12 @@ function renderInitials() {
   
 
 //takes you back to the start when you click Try Again! SHOULD retain your high score.
+shareInvite.addEventListener("click", function(event) {
+    event.currentTarget;
+    event.preventDefault();
+    share();
+});
+
 startAgain.addEventListener("click", function(event){
     event.currentTarget;
     saveScore.disabled = false;
@@ -363,14 +370,3 @@ saveScore.addEventListener("click", function(event) {
 //add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load
   //init();
- shareInvite.addEventListener("click", function(event) {
-    event.currentTarget;
-    event.preventDefault();
-    share();
-});
-
-shareInvite.addEventListener("touchstart", function(event) {
-    event.currentTarget;
-    event.preventDefault();
-    share();
-});

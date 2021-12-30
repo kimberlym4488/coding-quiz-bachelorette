@@ -15,19 +15,19 @@
         <header>
             <nav>
             <img class="hero" src="Assets/Images/59d42a44453341fbb03aa270fc9b1826_xl.png">
-            <div class="subtitle">Are you here for the right reasons?</div>
+            
             </nav>
             <p class="score incorrectAnswer correctAnswer"></p>
-            <p class="banner" placeholder="Good Luck!"></p>
+            <p class="banner" placeholder="Good Luck!">Test your Bachelor/ette Knowledge!</p>
             <br>
         </header>
 
         <div class="startCard">
-            <div class="welcomeMessage">Test your Bachelor Franchise knowledge! <br> You have 60 seconds, each incorrect answer will deduct 10 seconds from the clock. <br> Good luck!
+            <div class="welcomeMessage"> <br> You'll have <b>1 minute</b> for this quiz. <br><br>Watch out! Every rose has its thorn... <br>
+                <b>Each incorrect answer costs you 10 seconds</b>. <br> Good luck!
             </div><br>
 
             <button id="startButton">Start Quiz</button>
-
             <br>
         </div>
 
@@ -62,11 +62,21 @@
                 <ul id="initials-list"></ul>
             </div>
         </div>
-
+        <button id="shareInvite" onclick="postToFeed()" value="Invite a friend!">Invite a friend! </button>
         <button id="startAgain">Start Again</button>
         <br>
     </main>
-
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '626108158635585',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v12.0'
+          });
+        };
+      </script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="JS/script.js"></script>
 </body>
 

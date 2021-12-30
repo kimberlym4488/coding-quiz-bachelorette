@@ -162,6 +162,16 @@ function startGame() {
     //determines question number
     navigate(0);
 }
+function postToFeed() {
+var obj = {
+    method: 'share',
+    href: 'https://kimberlym4488.github.io/coding-quiz-bachelorette',
+    description: "I scored" + count + "on the Bachelor/ette Quiz! Can you beat me?",
+    picture: 'https://user-images.githubusercontent.com/92805933/144375458-144636d6-f021-4102-8d8d-d4a1b738b38c.PNG)',
+    name: 'Bachelor/ette-Quiz!'       
+  };
+   FB.ui(obj);
+ }
 
 //Start the timer when user clicks start. Want this to be a global function.
 function setTime() {

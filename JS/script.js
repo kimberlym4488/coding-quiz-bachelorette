@@ -209,6 +209,7 @@ function setTime() {
 
 //This function is called from startGame() or nextQuestion eventListener.
 function callQuestion(){
+    response.innerHTML="";
     if (secondsLeft <= 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);

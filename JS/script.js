@@ -25,6 +25,7 @@ var myScore;
 var saveScore=document.getElementById("saveScore");
 var shareInvite=document.getElementById("shareInvite")
 var response = document.createElement("response");
+var highScoresButton = document.getElementById("highScoresButton")
 var initials= [];
 var secondsLeft = 120;
 var index = 0;
@@ -151,7 +152,7 @@ function startGame() {
     startAgain.style.display="block";
     index=0;
     count=0;
-    secondsLeft=60;
+    secondsLeft=120;
     if (timerInterval){
         clearInterval(timerInterval);
     }
@@ -232,44 +233,34 @@ function callQuestion(){
         questionEl.textContent=questions[index].question;
         
         choicesEl.forEach(function(element,i){
-            element.textContent=questions[index].choices[i];
-            console.log(element.textContent)
-          
+            element.textContent=questions[index].choices[i];    
 //forEach loop allows me to display the two items (element, and index (i) that I want to work with and be able to evaluate)
         }
         );
     }
 }
-var myChoice; // i is the choices index that the person selected. correctAnswer is the number in the index. How do we turn choices[i] into textContent
+var myChoice; // i is the choices index that the person selected. correctAnswer is the number in the index. Turning the correct answer into x and replacing that in the question index allows me to plant the correct answer in a response when the user guesses wrong.
 function checkAnswer(i){
-  
     myChoice=questions[index].choices[i];
-    console.log(myChoice)
-
-    console.log(questions[index].correctAnswer === i);
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
-        var response = document.createElement("response");
         response.classList.add("correctResponse")
+        //Adds a statement under the question with the correct response and whether they are right and wrong.
         response.innerHTML=`<br><br>That's right! It's ${myChoice}! <br> Click next to continue.`
         questionEl.append(response);
-        console.log(count);//check for errors
+    ;//check for errors
     }
     else{
         //change nothing in my count var.
         secondsLeft = secondsLeft-10;
-        console.log(questions[index].choices[3])
-        var correctChoice=questions[index].choices[3];
-        
+        var x = questions[index].correctAnswer;
+        var correctChoice=questions[index].choices[x];
         response.classList.add("correctResponse")
-        response.innerHTML=`<br><br>Sorry, you're incorrect, it was ${correctChoice}! <br> Click next to continue`
+        response.innerHTML=`<br><br>Sorry, you're incorrect, it was ${correctChoice}! <br> Click next to continue.`
         questionEl.append(response);
-
     }
-    
     localStorage.setItem("count",JSON.stringify(count));
-   
 };
     
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.
@@ -383,6 +374,11 @@ saveScore.addEventListener("click", function(event) {
     event.preventDefault();
     this.disabled = true;
     storeInitials();
+});
+
+highScoreButton.addEventListener("click", function(event){
+    event.currentTarget;
+    location.href="highScores.html"
 });
 //add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load

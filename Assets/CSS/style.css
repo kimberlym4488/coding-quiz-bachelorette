@@ -34,18 +34,16 @@ body {
     color:#1d2671;
     box-shadow: inset 0 0 13px #000000;
     padding: top 1.5rem;
-    padding: bottom 1.5rem;
-    
+
 }
 
 .timerElement{
     color:white;
     font-size:1.1rem;
-    padding:1rem;
+    padding:0rem;
 }
 
 header{
-    
     color:white;
     line-height:1rem;
     background-color:rgb(29,38,113,.5);
@@ -55,7 +53,6 @@ header{
 nav{
     background-color:rgb(29,38,113,.5);
     fill-opacity:50%;
-    padding:1rem;
 }
 
 .hero{
@@ -65,15 +62,15 @@ nav{
     height:auto;
     width:90%;
     box-sizing:border-box;
-
-    
 }
 
-.banner{
+.subtitle{
+    display:flex;
     font-size:1.2rem;
     color:white;
     background-color:none;
-    padding-top:1rem;
+    justify-content:space-around;
+    align-items:center;
 }
 
 p.score {
@@ -84,12 +81,10 @@ p.score {
 .welcomeMessage{
     font-size:1.1rem;
     line-height:1.5rem;
-    padding-top: 1.5rem;
-    padding-bottom: 1rem;
-    padding:1rem;
+    padding-top: .5rem;
 }
 
-#startButton, #nextQuestion, #startAgain, #saveScore, #shareInvite{
+#startButton, #nextQuestion, #startAgain, #saveScore, #shareInvite, #highScoresButton{
     display:block;
     border:var(--main-border);
     font-weight:bold;
@@ -104,6 +99,10 @@ p.score {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     transition-duration:.4s;
 }
+
+#startButton,  #highScoresButton {
+    margin-bottom:1rem;
+}
 #startAgain{
     margin-top:1rem;
     display:none;
@@ -113,6 +112,11 @@ p.score {
     margin-top:1rem;
 }
 
+#highScoresButton{
+    font-size:1rem;
+    margin:.75rem;
+    width:10rem;
+}
 
 #startButton:hover, #nextQuestion:hover, #startAgain:hover, #saveScore:hover, #shareInvite:hover{
     color:white;
@@ -123,6 +127,7 @@ p.score {
     margin-top:2rem;
     z-index:100;
 }
+
 .questionCard{
     display:none;
     background-color:none;
@@ -166,8 +171,7 @@ h1.question{
     
 }
 header{
-   
-    border-bottom:10px white solid;
+    border-bottom:5px white solid;
 }
 h1{
     font-size:1.2rem;
@@ -230,6 +234,14 @@ li{
       font-family:Georgia;
       font-size:1.2rem;
       font-style:italic;
+  }
+
+  @media screen and (max-width:768px) {
+    .subtitle { 
+        flex-wrap: wrap;  
+        flex-direction:reverse;
+    }
+    .subtitle:first-child { flex-basis: 100%; }
   }
  
 

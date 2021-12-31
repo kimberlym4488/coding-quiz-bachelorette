@@ -13,17 +13,22 @@
     <main class="container">
 
         <header>
-            <nav>
-            <img class="hero" src="Assets/Images/59d42a44453341fbb03aa270fc9b1826_xl.png">
-            
-            </nav>
-            <p class="score incorrectAnswer correctAnswer"></p>
-            <p class="banner" placeholder="Good Luck!">Test your Bachelor/ette Knowledge!</p>
             <br>
+            <nav>
+                <img class="hero" src="Assets/Images/59d42a44453341fbb03aa270fc9b1826_xl.png">
+            </nav>
+            <subtitle class="subtitle">
+                <p class="banner score" placeholder="Good Luck!">TEST YOUR BACHELOR/ETTE KNOWLEDGE</p>
+                <button id="highScoresButton">Score history</button>
+                
+            </subtitle>
+            <br>
+
         </header>
 
         <div class="startCard">
-            <div class="welcomeMessage"> <br> You'll have <b>2 minutes</b> for this quiz. <br><br>Watch out! Every rose has its thorn... <br>
+            <div class="welcomeMessage"> <br> You'll have <b>2 minutes</b> for this quiz. <br><br>Watch out! Every rose
+                has its thorn... <br>
                 <b>Each incorrect answer costs you 10 seconds</b>. <br> Good luck!
             </div><br>
 
@@ -36,7 +41,7 @@
             <br>
             <button id="nextQuestion">Next Question</button>
             <h1 class="question"></h1>
-            <ul >
+            <ul>
                 <button class="choices" onclick="checkAnswer(0)"></button>
                 <button class="choices" onclick="checkAnswer(1)"></button>
                 <button class="choices" onclick="checkAnswer(2)"></button>
@@ -53,8 +58,9 @@
 
                 <h1>Save your score!</h1>
                 <form id="initials-form" method="POST">
-                    <input type="text" placeholder="My initials are..." name="initials-text" style="text-align:center" id="initials-text" />
-                   <br>
+                    <input type="text" placeholder="My initials are..." name="initials-text" style="text-align:center"
+                        id="initials-text" />
+                    <br>
                     <button id="saveScore">Save</button>
                 </form>
                 <div class="myScore"></div>
@@ -68,16 +74,16 @@
         <br>
     </main>
     <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId            : '626108158635585',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v12.0'
-          });
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '626108158635585',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
         };
-      </script>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    </script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script src="JS/script.js"></script>
 </body>
 

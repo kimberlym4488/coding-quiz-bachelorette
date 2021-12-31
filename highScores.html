@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Assets/CSS/style.css">
+    <title>Bachelorette Quiz</title>
+</head>
+
+<body>
+    <main class="container">
+
+        <header>
+            <nav>
+            <img class="hero" src="Assets/Images/59d42a44453341fbb03aa270fc9b1826_xl.png">
+            
+            </nav>
+            <p class="score incorrectAnswer correctAnswer"></p>
+            <p class="banner" placeholder="Good Luck!">Test your Bachelor/ette Knowledge!</p>
+            <br>
+        </header>
+
+        <div class="resultsCard">
+            <br>
+            <div id="card">
+
+                <div class="myScore"></div>
+                <!-- <p>Top Scores: <span id="todo-count">0</span></p -->
+                <ul id="initials-list"></ul>
+            </div>
+        </div>
+        <button id="shareInvite" value="Invite a friend!">Invite a friend! </button>
+        <button id="startAgain">Start Again</button>
+        <br>
+    </main>
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId            : '626108158635585',
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v12.0'
+          });
+        };
+      </script>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script src="JS/highScore.js"></script>
+</body>
+
+</html>

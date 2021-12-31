@@ -19,7 +19,17 @@
             </nav>
             <subtitle class="subtitle">
                 <p class="banner score" placeholder="Good Luck!">TEST YOUR BACHELOR/ETTE KNOWLEDGE</p>
-                <button id="highScoresButton">Score history</button>
+                <button id="highScoresButton" data-modal="modal-one">Score history</button>
+                  
+                  <div class="modal" id="modal-one">
+                    <div class="modal-bg modal-exit"></div>
+                    <div class="modal-container">
+                      <h2>High Scores:
+                          <ul class="initialsList"></ul>
+                        </h2>
+                      <button class="modal-close modal-exit">X</button>
+                    </div>
+                  </div>
                 
             </subtitle>
             <br>
@@ -66,12 +76,14 @@
                 <div class="myScore"></div>
 
                 <!-- <p>Top Scores: <span id="todo-count">0</span></p -->
-                <ul id="initials-list"></ul>
+                <ul class="initialsList"></ul>
             </div>
         </div>
         <button id="shareInvite" value="Invite a friend!">Invite a friend! </button>
         <button id="startAgain">Start Again</button>
         <br>
+
+        
     </main>
     <script>
         window.fbAsyncInit = function () {

@@ -19,7 +19,7 @@ var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
 var initialsInput = document.querySelector("#initials-text");
 var initialsForm = document.querySelector("#initials-form");
-var initialsList= document.querySelector("#initials-list");
+var initialsList= document.querySelectorAll(".initialsList");
 var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
 var saveScore=document.getElementById("saveScore");
@@ -197,7 +197,7 @@ function setTime() {
         //Advises the user how many seconds are left.
         timeEl.innerHTML = secondsLeft + " seconds remaining";
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             // Calls function to create and send the results message
@@ -278,7 +278,6 @@ function results() {
     resultsCard.style.display = "block";
     startCard.style.display = "none";
     questionCard.style.display = "none";
-    incorrectAnswer.style.display="none";
        
   //Gets the total score from the incremented count value found in CallQuestion function
   //Displays the total score - NEED TO FIX.
@@ -289,7 +288,6 @@ function renderInitials() {
     console.log(myScore)
     // Clear initialsList element and update myScore
     myScore = JSON.parse(localStorage.getItem("count")); 
-    console.log(myScore);
     initialsList.innerHTML = "";
     myScoreTextContent.textContent = myScore || "no score";
   //it is now a number. myScore variable is grabbed by access to the dom. But once the parse/local storage executes the dom access point is no longer valid, it becomes a number. We are not accessing the dom anymore. 
@@ -307,7 +305,6 @@ function renderInitials() {
   
       li.appendChild(buttontodo);
       initialsList.appendChild(li);
-   
     }
     return;
   }
@@ -376,10 +373,24 @@ saveScore.addEventListener("click", function(event) {
     storeInitials();
 });
 
-highScoreButton.addEventListener("click", function(event){
-    event.currentTarget;
-    location.href="highScores.html"
-});
 //add a function here to call the store init()?
   // Calls init to retrieve data and render it to the page on load
   //init();
+
+  var modals = document.querySelectorAll('[data-modal]');
+
+modals.forEach(function(trigger) {
+  trigger.addEventListener('click', function(event) {
+    event.preventDefault();
+    renderInitials();
+    var modal = document.getElementById(trigger.dataset.modal);
+    modal.classList.add('open');
+    var exits = modal.querySelectorAll('.modal-exit');
+    exits.forEach(function(exit) {
+      exit.addEventListener('click', function(event) {
+        event.preventDefault();
+        modal.classList.remove('open');
+      });
+    });
+  });
+});

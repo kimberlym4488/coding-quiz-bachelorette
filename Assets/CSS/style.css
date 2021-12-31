@@ -1,5 +1,5 @@
 *{
-    max-height:100vh;
+   
     font-size:1rem;
     
 }
@@ -54,8 +54,8 @@ header{
 
 nav{
     background-color:rgb(29,38,113,.5);
-    padding:2rem;
     fill-opacity:50%;
+    padding:1rem;
 }
 
 .hero{
@@ -65,6 +65,7 @@ nav{
     height:auto;
     width:90%;
     box-sizing:border-box;
+
     
 }
 
@@ -91,23 +92,27 @@ p.score {
 #startButton, #nextQuestion, #startAgain, #saveScore, #shareInvite{
     display:block;
     border:var(--main-border);
-    padding:1rem;
     font-weight:bold;
     background-color:white;
     color:#1d2671;
     margin:auto;
-    height:3.5rem;
+    padding: .5rem 1rem;
+    font-size: 1.1rem;
     width:12rem;
     font-size:1.1rem;
     border-radius:15px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    margin-bottom:1rem;
     transition-duration:.4s;
 }
 #startAgain{
     margin-top:1rem;
     display:none;
 }
+
+#nextQuestion{
+    margin-top:1rem;
+}
+
 
 #startButton:hover, #nextQuestion:hover, #startAgain:hover, #saveScore:hover, #shareInvite:hover{
     color:white;
@@ -146,6 +151,8 @@ div.myScore{
   }
 
 h1.question{
+    padding-left:1rem;
+    padding-right:1rem;
     padding-top:2rem;
     width:auto;
     font-size:1.1rem;
@@ -171,15 +178,23 @@ form, label, input, ul, li, p{
     margin-bottom:1rem;
 }
 
+input{
+    padding:1rem;
+    margin-bottom:1rem;
+    margin-top:0rem;
+    border-radius:15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border:none;
+}
+
 ul {
-    display: block;
+    display:inline-block;
     list-style-type: none;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start:0px!important;
-
 }
 
 #todo-count{
@@ -191,10 +206,11 @@ li{
 
 }
 .choices {
-   display:inline-block;
+   display:block;
     padding: .5rem 1rem;
     font-size: 1.1rem;
     cursor: pointer;
+    width:15rem;
     text-align: center;
     text-decoration: none;
     outline: none;
@@ -210,14 +226,12 @@ li{
     margin-top:1rem;
   }
   
-  .choices:active {
-      background-color: white;
-      color:rgb(29,38,113);
-      font-size:1.1rem;
-      box-shadow: 0 10px #666;
-      transform: translateY(4px);
+  .correctResponse{
+      font-family:Georgia;
+      font-size:1.2rem;
+      font-style:italic;
   }
-
+ 
 
 
 

@@ -24,8 +24,9 @@ var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
 var saveScore=document.getElementById("saveScore");
 var shareInvite=document.getElementById("shareInvite")
+var response = document.createElement("response");
 var initials= [];
-var secondsLeft = 60;
+var secondsLeft = 120;
 var index = 0;
 var questions = [];
 var count = 0;
@@ -89,7 +90,7 @@ questions = [
         "2",
         "3",
         "As many as you want"],
-        correctAnswer: 2
+        correctAnswer: 1
     },
     {
         question: "What event takes place at the end of most episodes of The Bachelor/Bachelorette?",
@@ -98,7 +99,7 @@ questions = [
         "Cocktail Party",
         "1-on-1 Date",
         "Engagement"],
-        correctAnswer: 0
+        correctAnswer: 1
     },
     {
         question: "Who was the first Latino lead of The Bachelor?",
@@ -134,7 +135,7 @@ questions = [
         "Byron Velvick",
         "Nick Viall",
         "Brad Womack"],
-        correctAnswer: 1
+        correctAnswer: 2
     },
 ]
 //default value of startcard is display:none. This shows the card at the beginning and I can remove it after startGame function is called.
@@ -227,32 +228,47 @@ function callQuestion(){
     
         //reset my count at 1 so it isn't being added twice.
         //count=0;
-        questionEl.innerHTML=questions[index].question;
+        questionEl.textContent=questions[index].question;
+        
         choicesEl.forEach(function(element,i){
             element.textContent=questions[index].choices[i];
+            console.log(element.textContent)
+          
 //forEach loop allows me to display the two items (element, and index (i) that I want to work with and be able to evaluate)
         }
         );
     }
 }
+var myChoice; // i is the choices index that the person selected. correctAnswer is the number in the index. How do we turn choices[i] into textContent
 function checkAnswer(i){
+  
+    myChoice=questions[index].choices[i];
+    console.log(myChoice)
+
+    console.log(questions[index].correctAnswer === i);
     if (questions[index].correctAnswer === i){
         //increase my count by 1 for the locally stored variable count.
         count++;
-        correctAnswerEl.innerHTML="Yes, that's right!"
+        var response = document.createElement("response");
+        response.classList.add("correctResponse")
+        response.innerHTML=`<br><br>That's right! It's ${myChoice}! <br> Click next to continue.`
+        questionEl.append(response);
         console.log(count);//check for errors
     }
     else{
         //change nothing in my count var.
-        console.log(questions[index].correctAnswer);
-        console.log(secondsLeft);
         secondsLeft = secondsLeft-10;
-        incorrectAnswer.innerHTML="Sorry, wrong answer!";
+        console.log(questions[index].choices[3])
+        var correctChoice=questions[index].choices[3];
+        
+        response.classList.add("correctResponse")
+        response.innerHTML=`<br><br>Sorry, you're incorrect, it was ${correctChoice}! <br> Click next to continue`
+        questionEl.append(response);
+
     }
     
     localStorage.setItem("count",JSON.stringify(count));
-    navigate(1);
-    callQuestion();
+   
 };
     
 //Determines where we are in the index, dependent on when we call navigate with a 0 or 1.

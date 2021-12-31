@@ -23,7 +23,7 @@
         </header>
 
         <div class="startCard">
-            <div class="welcomeMessage"> <br> You'll have <b>1 minute</b> for this quiz. <br><br>Watch out! Every rose has its thorn... <br>
+            <div class="welcomeMessage"> <br> You'll have <b>2 minutes</b> for this quiz. <br><br>Watch out! Every rose has its thorn... <br>
                 <b>Each incorrect answer costs you 10 seconds</b>. <br> Good luck!
             </div><br>
 
@@ -33,6 +33,8 @@
 
         <div class="questionCard">
             <div class="questions "></div>
+            <br>
+            <button id="nextQuestion">Next Question</button>
             <h1 class="question"></h1>
             <ul >
                 <button class="choices" onclick="checkAnswer(0)"></button>
@@ -42,7 +44,6 @@
             </ul>
             <!-- Submit your answer -->
             <div class="correctAnswer"></div>
-            <button id="nextQuestion">Next Question</button>
             <div class="timerElement"></div>
         </div>
 

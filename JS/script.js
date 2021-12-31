@@ -19,7 +19,7 @@ var scores = document.querySelector("#scores");
 var score = document.querySelector(".score");
 var initialsInput = document.querySelector("#initials-text");
 var initialsForm = document.querySelector("#initials-form");
-var initialsList= document.querySelectorAll(".initialsList");
+var initialsList= document.querySelector("#initialsList");
 var myScoreTextContent = document.querySelector(".myScore");
 var myScore;
 var saveScore=document.getElementById("saveScore");
@@ -100,7 +100,7 @@ questions = [
         "Cocktail Party",
         "1-on-1 Date",
         "Engagement"],
-        correctAnswer: 1
+        correctAnswer: 0
     },
     {
         question: "Who was the first Latino lead of The Bachelor?",
@@ -136,7 +136,7 @@ questions = [
         "Byron Velvick",
         "Nick Viall",
         "Brad Womack"],
-        correctAnswer: 2
+        correctAnswer: 1
     },
 ]
 //default value of startcard is display:none. This shows the card at the beginning and I can remove it after startGame function is called.
@@ -340,11 +340,8 @@ function renderInitials() {
 
     // Add new todoText to todos array, clear the input
     initialsInput.value = "";
-  
     // Store updated initials in localStorage, re-render the list
-  
     renderInitials();
-    
   };
   
 

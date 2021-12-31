@@ -299,7 +299,7 @@ li{
       cursor: pointer;
 }
 
-.initialsList{
+#initialsList{
     color:black;
     background-color:white;
 }

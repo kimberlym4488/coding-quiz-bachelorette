@@ -6,6 +6,9 @@ How well do you know Bachelorette and Bachelor Trivia?
 ## Project Homepage
 https://kimberlym4488.github.io/coding-quiz-bachelorette/
 
+## Video Walkthrough
+https://www.loom.com/share/83f90904ca45408cbdee8a86557a7d31
+
 ## Project documentation URL
 https://github.com/kimberlym4488/coding-quiz-bachelorette
 
